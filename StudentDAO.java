@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import oracle.jdbc.driver.OracleDriver;
 
@@ -16,7 +15,14 @@ public class StudentDAO {
 	PreparedStatement ps;
 	ResultSet rs ;
 	
-
+	
+	
+	
+	
+	
+	
+	
+	//오라클 연결 메소드
 	public Connection getConn() {
 		String url = "jdbc:oracle:thin:@221.144.89.105:3301:XE";
 		String user = "hanul";
@@ -34,6 +40,9 @@ public class StudentDAO {
 		return conn;
 	}
 
+	
+	
+	//닫는 메소드
 	public void dbClose() {
 		// 어떤 순서대로 닫아야할까? 열때 통신연결로를 열고 전송객체를 보내고 결과 객체 받음.
 		// 통신을 열때랑 역순으로 닫아주면 된다. 
@@ -57,6 +66,13 @@ public class StudentDAO {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	//1.학생 정보를 전체 조회할수있는 메소드 형태를 만드세요. getStudentList();
 	// ( 전체 정보를 어떤 클래스에서 호출하든 사용가능해야함 )
 	// DTO = (변수) 변수<= 한가지값만 가짐 [ 번호 , 이름 ]  Collection ArrayList
@@ -74,7 +90,6 @@ public class StudentDAO {
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			dbClose();
@@ -85,26 +100,37 @@ public class StudentDAO {
 		return list;
 	}
 	
-	// viewList 라는 메소드는 조회 된 결과를 전체 콘솔창에 출력하는 메소드임.
-	public void viewList(ArrayList<StudentDTO> list) { // <=
+	
+	
+	//학생목록이 콘솔에 보이기 위한 메소드
+	public void viewList(ArrayList<StudentDTO> list) {
 		if(list == null || list.size() == 0) {
 			System.out.println("보여줄 목록이 없습니다.");
 			return ;
 		}
-		
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getStudent_no() + "." + list.get(i).getStudent_name());
-		}
-	}
+			System.out.print(list.get(i).getStudent_no() + "\t");
+			System.out.println(list.get(i).getStudent_name());
+		}//for
+		
+	}//viewList()
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 	//2.로그인 처리를 위한 메소드를 만들기 loginUser(); // 파라메터가 필요할까?
 	// ( ↑ ) , true false를 이용해서 true가 나오면 로그인 됨 <-이것만정답 x
 	//        , -1은 확실히 실패 그외에는 성공 ( jdbc) ..
-	public boolean loginUser(String id , String pw) { // 네이버 : 아이디 입력 , 비밀번호 입력
-		return false;
-	}
+
+	
+
+	
 	
 	
 	
