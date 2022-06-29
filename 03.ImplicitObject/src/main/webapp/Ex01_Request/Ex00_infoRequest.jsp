@@ -91,18 +91,11 @@
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
 	</table>
+
+
+
+		<a><%=(String)session.getAttribute("session") %></a>
 </body>
 </html>
