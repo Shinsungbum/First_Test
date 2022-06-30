@@ -24,8 +24,6 @@
 		<li><a href="TestServlet">테스트 서블릿</a></li>
 		<li><a href="Ex01_Response">Response 사용해보기</a></li>
 		
-		
-		
 		<!-- 
 			Scope <= 망원경 (범위)
 			데이터의 전달범위는 각각의 스코프마다 차이가 있음
