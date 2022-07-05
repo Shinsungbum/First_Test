@@ -13,7 +13,7 @@
 	<!-- 학생의 이름  student_no  student_name,  user_id, ,  first_name,  last_name,
 			 -->
 	<h1 style="text-align: center;">학생정보를 보여 줍니다</h1>
-
+<%-- 	<% response.setIntHeader("Refresh", 3);  %> --%>
 	<table class="styled-table">
 		<thead>
 			<tr>
@@ -32,22 +32,19 @@
 	%>
 			<tr>
 				<td><a href="detail.st?studentno=<%=list.get(i).getStudent_no() %>&user_id=<%=list.get(i).getUser_id()%>"><%=list.get(i).getStudent_no() %></a></td>
-				<td><a href="detail.st"><%=list.get(i).getStudent_name()%></a></td>
+				<td><a href="detail.st?studentno=<%=list.get(i).getStudent_no() %>&user_id=<%=list.get(i).getUser_id()%>"><%=list.get(i).getStudent_name()%></a></td>
 				<td><%=list.get(i).getUser_id()%></td>
 				<td><%=list.get(i).getFirst_name()%></td>
 				<td><%=list.get(i).getLast_name()%></td>
-			<!-- 폼태그 방식도 가능함 -->
 				<td>
-				<form action="detail.st" method="get">
-				<input type="hidden" value="<%= list.get(i).getStudent_no()%>" name="studentno"> 
-				<input type="hidden" value="<%= list.get(i).getUser_id()%>" name="user_id"> 
-				<input type="submit" value="학생정보 상세보기">
+				<form  action="detail.st" method="get" >
+					<input type="hidden" name="studentno" value="<%=list.get(i).getStudent_no()%>">
+					<input type="hidden" name="user_id" value="<%=list.get(i).getUser_id()%>">
+					<input type="submit" value="detail.st로 요청">
 				</form>
 				</td>
 			</tr>
 			
-
-
 			<%} %>
 		</tbody>
 	</table>

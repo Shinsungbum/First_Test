@@ -20,6 +20,7 @@ public class StudentDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, user, password);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("getConn Error !");
@@ -98,52 +99,85 @@ public class StudentDAO {
 		
 		return list;
 	}
-	
-	//학생의 상세정보를 보여주기위한 메소드
-	//HttpServletRequest req = Controller.req
-	//String abc = Controller."";
-	//1.String student_no, user_id ; ☆☆☆☆★★★★★
-	public StudentDTO getStudentInfo(String student_no, String user_id) {	//해당하는 메소드가 실행될때 필요한 변수를 어떤곳에 입력받아서 사용하기
-		//데이터베이스에 접근해서 학생 한명의 정보를 얻어오는 비지니스로직을 구현(데이터 한건 얻어오기
+	// HttpServletRequest req = Controller.req;
+	// String abc = Controller."";
+	// 1 .String student_no , user_id ; ☆☆☆★★★★★
+	public StudentDTO getStudentInfo(String student_no , String user_id) {// 해당하는 메소드가 실행될때 필요한 변수를 어떤곳에 입력받아서 사용하기.
 		StudentDTO dto = null;
 		getConn();
-		String sql = "SELECT u.* , s.student_name  "
-				+ "FROM USER_INFO u left outer join  STUDENT s  "
-				+ "on u.STUDENT_NO = s.STUDENT_NO(+) "
-				+ "WHERE u.student_no = ? AND u.user_id = ?";
-		
+		String sql = " SELECT u.* , s.student_name  FROM USER_INFO u left outer join STUDENT s on u.STUDENT_NO = s.STUDENT_NO "
+				+ " where  u.STUDENT_NO= ? AND u.USER_ID=? ";
 		try {
+			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, student_no);
 			ps.setString(2, user_id);
-//			ps.setString(1, req.getParameter("studentno")); req를 이용하면 항상 req.getparamter가 있는경우에만 이용이가능
-															//재활용이나 여러플랫폼에서 활용하기엔 불편함
-//			ps.setString(2, req.getParameter("user_id"));
+			
+		//	ps.setString(1, req.getParameter("studentno")); req를 이용하면 항상 req.getparamter가 있는경우에만 이용이가능
+														  //재활용이나 여러 플랫폼에서 활용하기엔 불편함
+		//	ps.setString(2, req.getParameter("user_id"));
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				dto = new StudentDTO(rs.getString("student_name"), 
+				dto = new StudentDTO(
+						rs.getString("student_name"), 
 						rs.getString("user_id"), 
 						rs.getString("user_pw"), 
 						rs.getString("first_name"), 
 						rs.getString("last_name"), 
-						rs.getInt("student_no"));
+						rs.getInt("student_no")
+						);
 				dto.setAdmin_yn(rs.getString("admin_yn"));
 				dto.setMoney(rs.getInt("money"));
 				dto.setCreate_ymd(rs.getString("create_ymd"));
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//데이터베이스에 접근해서 학생 한명의 정보를 얻어오는 비지니스로직을 구현(데이터 한건 얻어오기)
+		
+		return dto;
+	}
+	
+	public int updateInfo(String first_name, String last_name, String student_no, String user_id) {
+		getConn();
+		String sql = "UPDATE  user_info "
+				+ "SET     first_name = ? , last_name =? "
+				+ "WHERE   user_id = ?  AND student_no = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, first_name);
+			ps.setString(2, last_name);
+			ps.setString(3, user_id);
+			ps.setString(4, student_no);
+			return ps.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return 0;
+	}
+
+	public int deleteInfo(String student_no, String user_id) {
+		getConn();
+		String sql = "DELETE  FROM    user_info "
+				+ "WHERE   user_id = ? AND student_no = ? ";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_id);
+			ps.setString(2, student_no);
+			return ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return dto;
+		return 0;
 	}
-	
-	public void UpdateUser() {
-		
-	}
-	
 	
 	
 	

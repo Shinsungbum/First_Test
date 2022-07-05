@@ -18,7 +18,7 @@
             <h1><a href="/mvc">HANUL301</a></h1>
             <ul id="gnb">
                 <li><a href="list.st">JDBC(학생목록조회)</a></li>
-                <li><a href="#">Mybatis(사원목록조회)</a></li>
+                <li><a href="list.hr">Mybatis(사원목록조회)과제</a></li>
                 <li><a href="#">JSTL사용</a></li>
                 <li><a href="#">고객관리</a></li>
                 <li><a href="#">게시판</a></li>
