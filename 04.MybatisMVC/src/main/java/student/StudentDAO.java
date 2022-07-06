@@ -99,13 +99,17 @@ public class StudentDAO {
 		
 		return list;
 	}
+	
+	
 	// HttpServletRequest req = Controller.req;
 	// String abc = Controller."";
 	// 1 .String student_no , user_id ; ☆☆☆★★★★★
 	public StudentDTO getStudentInfo(String student_no , String user_id) {// 해당하는 메소드가 실행될때 필요한 변수를 어떤곳에 입력받아서 사용하기.
 		StudentDTO dto = null;
 		getConn();
-		String sql = " SELECT u.* , s.student_name  FROM USER_INFO u left outer join STUDENT s on u.STUDENT_NO = s.STUDENT_NO "
+		String sql = " SELECT u.* , s.student_name  "
+				+ "FROM USER_INFO u left outer join STUDENT s "
+				+ "on u.STUDENT_NO = s.STUDENT_NO "
 				+ " where  u.STUDENT_NO= ? AND u.USER_ID=? ";
 		try {
 			
@@ -140,6 +144,7 @@ public class StudentDAO {
 		return dto;
 	}
 	
+	//수정 메소드
 	public int updateInfo(String first_name, String last_name, String student_no, String user_id) {
 		getConn();
 		String sql = "UPDATE  user_info "
@@ -161,7 +166,8 @@ public class StudentDAO {
 		
 		return 0;
 	}
-
+	
+	//아이디 삭제 메소드
 	public int deleteInfo(String student_no, String user_id) {
 		getConn();
 		String sql = "DELETE  FROM    user_info "
