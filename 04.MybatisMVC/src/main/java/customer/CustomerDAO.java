@@ -46,6 +46,13 @@ public class CustomerDAO {
 		
 		return list;
 	}
+
+	public int insert(CustomerDTO dto) {
+		//sql맵퍼에 파라메터(사용할 변수)를 보내는 방법 ( 하나만 ㄴ머길수 있음) ex) String <-1, HashMap<-1, ArrayList<-1
+		int result = sql.insert("cus.insert",dto);
+		sql.commit();//Mybatis는 auto Commit속성이 기본적으로 false 임
+		return result;
+	}
 	
 	
 	

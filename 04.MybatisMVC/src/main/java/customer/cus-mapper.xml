@@ -9,7 +9,11 @@
   <select id="listselect" resultType="customer.CustomerDTO">
     select * from customer
   </select>
-
+	<insert id="insert">
+		INSERT INTO customer (name, email, phone, gender)
+		values  (#{name},#{email},#{phone},#{gender})
+	
+	</insert>
 <!--   <select id="listselect" resultType="customer.CustomerDTO"> -->
 <!--     select * from customer -->
 <!--   </select> -->

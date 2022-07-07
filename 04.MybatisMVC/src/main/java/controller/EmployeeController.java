@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,8 +22,7 @@ public class EmployeeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getServletPath().equals("/list.hr")) {
-			
-			ArrayList<EmployeeDTO> list = dao.getLIst();
+			List<EmployeeDTO> list = dao.getList2();
 			req.setAttribute("list", list);
 			rd = req.getRequestDispatcher("employee/list.jsp");
 		}

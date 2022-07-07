@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,25 +27,12 @@
 				<th>부서평균급여</th>
 			</tr>
 		</thead>
+		<c:forEach items="${list}" var="dto">
 		<tbody>
-			<%
-		ArrayList<EmployeeDTO> list = (ArrayList<EmployeeDTO>)request.getAttribute("list");
-		for(int i = 0 ;  i<list.size(); i ++){
-	%>
 			<tr>
-				<td><%=list.get(i).getEmployee_id()%></td>
-				<td><%=list.get(i).getName()%></td>
-				<td><%=list.get(i).getE_mail()%></td>
-				<td><%=list.get(i).getDepartment_id()%></td>
-				<td><%=list.get(i).getPhone_number()%></td>
-				<td><%=list.get(i).getDepartment_name()%></td>
-				<td><%=list.get(i).getAddr()%></td>
-				<td><%=list.get(i).getMax_sal()%></td>
-				<td><%=list.get(i).getMin_sal()%></td>
-				<td><%=list.get(i).getAvg_sal()%></td>
-			</tr>
-			
-			<%} %>
+				<td>${dto. }</td>			
+			</tr>			
+		</c:forEach>
 		</tbody>
 	</table>
 	<%@ include file="/include/footer.jsp"%>
