@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import customer.CustomerDTO;
 import employee.EmployeeDAO;
 import employee.EmployeeDTO;
 
@@ -22,7 +23,9 @@ public class EmployeeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getServletPath().equals("/list.hr")) {
-			List<EmployeeDTO> list = dao.getList2();
+			
+			List<EmployeeDTO> list = dao.getList();
+			System.out.println(list.size());
 			req.setAttribute("list", list);
 			rd = req.getRequestDispatcher("employee/list.jsp");
 		}

@@ -54,6 +54,11 @@ public class CustomerDAO {
 		return result;
 	}
 	
+	public int update(CustomerDTO dto) {
+		int result = sql.update("cus.listUpdate",dto);
+		sql.commit();
+		return result;
+	}
 	
 	
 	

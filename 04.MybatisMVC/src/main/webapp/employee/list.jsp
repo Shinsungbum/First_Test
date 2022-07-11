@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core"prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +27,20 @@
 				<th>부서평균급여</th>
 			</tr>
 		</thead>
-		<c:forEach items="${list}" var="dto">
 		<tbody>
+		
+		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto. }</td>			
+				<td>${dto.employee_id }</td>			
+				<td>${dto.name }</td>			
+				<td>${dto.e_mail }</td>			
+				<td>${dto.department_id }</td>			
+				<td>${dto.phone_number }</td>			
+				<td>${dto.department_name }</td>			
+				<td>${dto.addr }</td>			
+				<td>${dto.max_sal }</td>			
+				<td>${dto.min_sal }</td>			
+				<td>${dto.avg_sal }</td>			
 			</tr>			
 		</c:forEach>
 		</tbody>

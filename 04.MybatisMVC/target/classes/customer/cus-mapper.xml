@@ -14,6 +14,16 @@
 		values  (#{name},#{email},#{phone},#{gender})
 	
 	</insert>
+	
+	<update id="listUpdate">
+	UPDATE CUSTOMER
+	set name = #{name},
+	email = #{email},
+	phone = #{phone},
+	gender = #{gender}
+	where  id = #{id}
+	
+	</update>
 <!--   <select id="listselect" resultType="customer.CustomerDTO"> -->
 <!--     select * from customer -->
 <!--   </select> -->

@@ -4,20 +4,7 @@ public class EmployeeDTO {
 	private String name, e_mail, phone_number, department_name, addr; 
 	private int	employee_id, department_id;
 	private double max_sal,min_sal, avg_sal;
-	public EmployeeDTO(int employee_id, String name, String e_mail, int department_id, String phone_number,
-			String department_name, String addr, double max_sal, double min_sal, double avg_sal) {
-		super();
-		this.employee_id = employee_id;
-		this.name = name;
-		this.e_mail = e_mail;
-		this.department_id = department_id;
-		this.phone_number = phone_number;
-		this.department_name = department_name;
-		this.addr = addr;
-		this.max_sal = max_sal;
-		this.min_sal = min_sal;
-		this.avg_sal = avg_sal;
-	}
+
 	public String getName() {
 		return name;
 	}

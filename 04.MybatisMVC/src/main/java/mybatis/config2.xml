@@ -12,10 +12,10 @@
         <property name="username" value="hr"/>
         <property name="password" value="0000"/>
       </dataSource>
-    </environment>
+    </environment> 
   </environments>
   <mappers>
-    <mapper resource="employee/test-mapper.xml"/>
+    <mapper resource="employee/employee-mapper.xml"/>
 
   </mappers>
 </configuration>
