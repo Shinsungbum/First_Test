@@ -4,11 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	  <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,13 +11,14 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css?<%= new java.util.Date() %>" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.jsp">Hanul301 SSB</a>
+            <a class="navbar-brand ps-3" href="index.jsp">Hanul301 KYM</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -37,21 +33,21 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                   
-                        <!-- 세션에 로그인 정보를 저장하고 세션에 로그인정보가 있는지
-                        		없는지에 따라서 로그아웃, 내정보 보기 또는 로그인을 보여준다.
-                         -->
-                         <c:if test="${empty userInfo }">
-                         	<li><a class="dropdown-item" href="login">로그인</a></li>
-                         	<li><a class="dropdown-item" href="join">회원가입</a></li>
-                         </c:if>
-        
-                        <li><hr class="dropdown-divider" /></li>
-
-                         <c:if test="${!empty userInfo }">
-	                        <li><a class="dropdown-item" href="logout">로그아웃</a></li>
-    	                    <li><a class="dropdown-item" href="info">내정보</a></li>
-                         </c:if>
+                        
+                    
+                        <!-- 세션에 로그인정보를 저장하고 세션에 로그인정보가 있는지
+                        	 없는지에 따라서 로그아웃,내정보 보기 또는 로그인을 보여준다.
+                          -->
+                        <c:if test="${empty userInfo}">
+                         <li><a class="dropdown-item" href="login.mb">로그인</a></li>
+                             <li><hr class="dropdown-divider" /></li>
+                         <li><a class="dropdown-item" href="join.mb">회원가입</a></li>
+                        </c:if>
+                        <c:if test="${!empty userInfo}">
+                        <li><a class="dropdown-item" href="logout">로그아웃</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="info">내정보</a></li>
+                        </c:if>
                     </ul>
                 </li>
             </ul>
@@ -67,15 +63,16 @@
                                 고객정보조회
                             </a>
                             <div class="sb-sidenav-menu-heading">HR관리</div>
-                            <a class="nav-link" href="list.emp">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-arrows-down-to-people"></i></div>
-                                사원조회
+                             <a class="nav-link" href="list.emp">
+                               <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                                사원 조회
                             </a>
-                            <a class="nav-link" href="list.dept">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-cat"></i></i></div>
-                                부서조회
+                               <a class="nav-link" href="list.dept">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                                부서 조회
                             </a>
-                           
+                            
+                          
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -92,7 +89,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">게시판</div>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="list.no">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 공지 사항
                             </a>
@@ -109,5 +106,6 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
+
 </body>
 </html>

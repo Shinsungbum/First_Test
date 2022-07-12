@@ -41,6 +41,7 @@
 				<td>${dto.max_sal }</td>			
 				<td>${dto.min_sal }</td>			
 				<td>${dto.avg_sal }</td>			
+						
 			</tr>			
 		</c:forEach>
 		</tbody>

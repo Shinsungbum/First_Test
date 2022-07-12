@@ -26,7 +26,6 @@ public class HrController extends HttpServlet {
 		if(req.getServletPath().equals("/list.emp")) {
 			//사원 테이블 처리
 			List<EmployeeDTO>list = dao.getEmpList();
-			System.out.println(list.size());
 			req.setAttribute("list", list);
 			rd = req.getRequestDispatcher("hr/emplist.jsp");
 		
