@@ -11765,6 +11765,21 @@ input {
 input[name=address] { 
 	width: 100% }
 
+select {
+	height: 32px;
+	cursor: pointer;
+	padding-left: 10px;
+}
+.font-b { font-size: 20px; color: #3367d6; }
+.font-r { font-size: 20px; color: #d10a06; }
+
+.valid { font-size:14px; color:#068704; font-weight: bold;  }
+.invalid { font-size:14px; color:#d10a06; font-weight: bold;  }
+
+
+
+
+
 
 
 
