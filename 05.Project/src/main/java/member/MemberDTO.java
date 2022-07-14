@@ -2,7 +2,16 @@ package member;
 
 public class MemberDTO {
 	private String userid, name, userpw, gender, email, 
-					birth, phone, address, admin;
+					birth, phone, address, admin,post;
+
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
+	}
 
 	public String getUserid() {
 		return userid;

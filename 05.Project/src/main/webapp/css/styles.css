@@ -11750,6 +11750,7 @@ a.btn-fill {
 	color: #fff
 }
 
+.btnSet { margin: 20px auto; }
 
 table tr th:first-child { 
 	border-right: 2px solid #333 }
@@ -11776,6 +11777,10 @@ select {
 .valid { font-size:14px; color:#068704; font-weight: bold;  }
 .invalid { font-size:14px; color:#d10a06; font-weight: bold;  }
 
+input[type=radio] {
+	width:18px;
+	vertical-align: middle;
+}
 
 
 

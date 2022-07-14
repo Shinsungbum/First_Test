@@ -8,15 +8,18 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@221.144.89.105:3301:XE"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
         <property name="username" value="hanul"/>
         <property name="password" value="0000"/>
       </dataSource>
     </environment>
   </environments>
   <mappers>
+ 
     <mapper resource="test/test-mapper.xml"/>
     <mapper resource="customer/cus-mapper.xml"/>
+    <mapper resource="member/member-mapper.xml"/>
+   
     <!-- 추후 mapper/*-mapper.xml (전체익식함) -->
   </mappers>
 </configuration>

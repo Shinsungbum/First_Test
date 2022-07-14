@@ -1,8 +1,8 @@
 package member;
 
 import java.io.IOException;
-import java.io.InputStream;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,48 +11,39 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MemberDAO {
 	//쿼리문실행기능을 가진 클래스: SqlSessionTemplate 
 	public static SqlSession sql;
-	
 	static {
 		String resource = "mybatis/config.xml";
 		try {
 			SqlSessionFactory factory 
-			= new SqlSessionFactoryBuilder().build(
-					Resources.getResourceAsStream(resource));
-			sql = factory.openSession();
+				= new SqlSessionFactoryBuilder().build( 
+						Resources.getResourceAsStream(resource) );
+			sql = factory.openSession(true);	//autocommit 설정 : true
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	//CRUD(create, Read, Update, Delete)
+	//CRUD(Create, Read, Update, Delete)
 	//회원가입
 	public int member_join(MemberDTO dto) {
-		
-		
-		return 0;
+		return sql.insert("member.join", dto);
 	}
 	//내정보보기
 	public MemberDTO member_myinfo(String userid) {
-		
 		return null;
 	}
-	
 	//아이디 중복확인
 	public int member_id_check(String userid) {
-		
-		return 0;
+		 System.out.println("userid> "+userid );
+		return sql.selectOne("member.id_check", userid);
 	}
 	
 	//내정보변경
 	public int member_update(MemberDTO dto) {
-		
 		return 0;
 	}
-	
 	//회원탈퇴
 	public int member_delete(String userid) {
-		
 		return 0;
 	}
 	
