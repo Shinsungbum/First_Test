@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -24,7 +24,7 @@
                                     <p class="lead">개발자 오류</p>
                                     <a href="/pj">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        홈으로 다시 돌아가기
+                                        홈으로 돌아가기
                                     </a>
                                 </div>
                             </div>

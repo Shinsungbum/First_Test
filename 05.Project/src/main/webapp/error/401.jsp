@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -21,11 +21,11 @@
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
                                     <h1 class="display-1">401</h1>
-                                    <p class="lead">무단</p>
-                                    <p>이 리소스에 대한 액세스가 거부되었습니다.</p>
-                                   <a href="/pj">
+                                    <p class="lead">거부됨</p>
+                                    <p>이 리소스에 대한 액세스가 거부되었습니다..</p>
+                                    <a href="/pj">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        홈으로 다시 돌아가기
+                                          홈으로 다시 돌아가기
                                     </a>
                                 </div>
                             </div>

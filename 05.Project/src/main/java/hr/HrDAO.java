@@ -10,33 +10,25 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class HrDAO {
-
-public static SqlSession sql;
-	
+	public static SqlSession sql;
 	static {
-		String resource = "mybatis/config2.xml";
+		String resource = "mybatis/hr-config.xml";
 		InputStream inputStream;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-			sql = sqlSessionFactory.openSession(true); //AutoCommit설정을 true로 줌
+			sql = sqlSessionFactory.openSession(true); //AutoCommit설정을 true
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	
-	
-	public List<EmployeeDTO> getEmpList() {
-		List<EmployeeDTO> list = sql.selectList("hr.emplist");
-		
-		return list;
+	public List<EmpDTO> empList(){
+		return sql.selectList("hr.emplist");
 	}
-
-	public List<DeptDTO> getdeptList() {
-		List<DeptDTO> list = sql.selectList("hr.deptlist");
-		
-		return list;
+	public List<DeptDTO> deptList(){
+		return sql.selectList("hr.deptlist");
 	}
-
+	
 }

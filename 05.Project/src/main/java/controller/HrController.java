@@ -10,37 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hr.DeptDTO;
-import hr.EmployeeDTO;
+import hr.EmpDTO;
 import hr.HrDAO;
 
 
-@WebServlet({"/list.emp", "/list.dept"})
+@WebServlet({"/list.emp","/list.dept"})
 public class HrController extends HttpServlet {
 	RequestDispatcher rd;
-	HrDAO dao = new HrDAO();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
+		System.out.println(req.getServletPath());
+		HrDAO dao = new HrDAO();
 		if(req.getServletPath().equals("/list.emp")) {
-			//사원 테이블 처리
-			List<EmployeeDTO>list = dao.getEmpList();
-			req.setAttribute("list", list);
+			//DAO를 만들고 req.setAttr해야됨.
+			req.setAttribute("list", dao.empList());
 			rd = req.getRequestDispatcher("hr/emplist.jsp");
-		
-			
-			
-			
 			
 		}else if(req.getServletPath().equals("/list.dept")) {
-			//부서 테이블 처리
-			List<DeptDTO>list = dao.getdeptList();
-			req.setAttribute("list", list);
+			req.setAttribute("list", dao.deptList());
 			rd = req.getRequestDispatcher("hr/deptlist.jsp");
-		
 		}
-		
 		rd.forward(req, resp);
 	}
 }

@@ -11,14 +11,14 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css?<%= new java.util.Date() %>" rel="stylesheet" />
+        <link href="css/styles.css?<%=new java.util.Date() %>" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.jsp">Hanul301 KYM</a>
+            <a class="navbar-brand ps-3" href="index.jsp">Hanul301 SSB</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -44,7 +44,7 @@
                          <li><a class="dropdown-item" href="join.mb">회원가입</a></li>
                         </c:if>
                         <c:if test="${!empty userInfo}">
-                        <li><a class="dropdown-item" href="logout">로그아웃</a></li>
+                        <li><a class="dropdown-item" href="logout.mb">로그아웃</a></li>
                             <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="info">내정보</a></li>
                         </c:if>

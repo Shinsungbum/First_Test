@@ -1,9 +1,32 @@
 package member;
 
 public class MemberDTO {
-	private String userid, name, userpw, gender, email, 
-					birth, phone, address, admin,post;
+	private String userid, name, userpw, gender, email, salt, salt_pw
+					, birth, phone, post, address, admin, social;
+	
+	public String getSalt() {
+		return salt;
+	}
 
+	public String getSocial() {
+		return social;
+	}
+
+	public void setSocial(String social) {
+		this.social = social;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getSalt_pw() {
+		return salt_pw;
+	}
+
+	public void setSalt_pw(String salt_pw) {
+		this.salt_pw = salt_pw;
+	}
 
 	public String getPost() {
 		return post;
@@ -84,7 +107,5 @@ public class MemberDTO {
 	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
-	
-	
 	
 }
