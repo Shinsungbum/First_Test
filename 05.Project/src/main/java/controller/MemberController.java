@@ -36,6 +36,7 @@ public class MemberController extends HttpServlet {
 		
 		String NAVER_ID = "mQ9C0TkV6mOZ0bOFUgPj"; //네이버client_id
 		String NAVER_SECRET = "jqI3JxaNJ5"; //네이버 client_secret
+		String KAKAO_ID	= "5353b1cc5c52b96790eb039e9ffbd7dc";
 		
 		if( uri.equals("/join.mb") ) {
 			//회원가입화면 요청
@@ -62,8 +63,24 @@ public class MemberController extends HttpServlet {
 			
 		}else if(uri.equals("/logout.mb")) {
 			//로그아웃처리 요청
+			//카카오로그인한 경우 카카오계정도 함께 로그아웃되게
+			String social
+			= ((MemberDTO)request.getSession().getAttribute("userInfo")).getSocial();
+			
 			request.getSession().removeAttribute("userInfo");
-			view = request.getContextPath();
+			
+			if(social != null && social.equals("k")) {
+				//curl -v -X GET "https://kauth.kakao.com/oauth/logout
+				//?client_id=${YOUR_REST_API_KEY}
+				//&logout_redirect_uri=${YOUR_LOGOUT_REDIRECT_URI}"
+				StringBuffer url = new StringBuffer("https://kauth.kakao.com/oauth/logout");
+				url.append("?client_id=").append(KAKAO_ID);
+				url.append("&logout_redirect_uri=").append(appName(request));
+				view = url.toString();
+			}else {
+				view = request.getContextPath();				
+			}
+			
 			redirect = true;
 			
 			
@@ -84,6 +101,9 @@ public class MemberController extends HttpServlet {
 			//로그인화면 요청
 			view = "/member/login.jsp";
 			
+		
+		
+		
 		}else if(uri.equals("/naver_login.mb")) {
 			//네이버 로그인처리 요청
 			//https://nid.naver.com/oauth2.0/authorize
@@ -106,14 +126,20 @@ public class MemberController extends HttpServlet {
 			redirect = true;
 			view = url.toString();
 			
+	
+		
+		
+		
+		
 		}else if(uri.equals("/naver_callback.mb")) {
 			//API 요청 성공시 : http://콜백URL/redirect?code={code값}&state={state값}
 			//API 요청 실패시 : http://콜백URL/redirect?state={state값}&error={에러코드값}&error_description={에러메시지}
 			String error = request.getParameter("error");
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
+			redirect = true;
+			
 			if( error != null || state.equals((String)request.getSession().getAttribute("state") )) {
-				redirect = true;
 				view = request.getContextPath();
 			}else {
 				//Callback으로 전달받은 'code' 값을 이용하여 '접근토큰발급API'를 호출
@@ -150,27 +176,113 @@ public class MemberController extends HttpServlet {
 					dto.setEmail(json.getString("email") );
 					dto.setName(json.getString("name") );
 					dto.setGender(json.getString("gender").equals("F") ? "여" : "남" );// M/F -> 남/여
-
+					dto.setPhone(json.has("mobile") ? json.getString("mobile") : "");
 					
 					//회원정보로 저장
 					//네이버로그인이 처음이면 신규저장, 아니면 변경저장
 					//네이버로그인이 처음인지 파악 : 아이디의 존재여부
 					if( dao.member_id_check(dto.getUserid()) == 0 ) {
 						//신규저장
+						dao.member_join(dto);
 					}else {
 						//변경저장
+						dao.member_update(dto);
 					}
-					
-					
-					
+										
+					request.getSession().setAttribute("userInfo", dto);
 				}
+				view = request.getContextPath();
 			}
 				
 			
 			
 			
 			
-		}else if( uri.equals("/id_check.mb")) {
+		
+		
+		}else if( uri.equals("/kakao_login.mb")) {
+			//카카오로그인처리 요청
+			//https://kauth.kakao.com/oauth/authorize?response_type=code
+			//&client_id=${REST_API_KEY}
+			//&redirect_uri=${REDIRECT_URI}
+
+			StringBuffer url =
+			new StringBuffer("https://kauth.kakao.com/oauth/authorize?response_type=code");
+			url.append("&client_id=").append(KAKAO_ID);
+			url.append("&redirect_uri=").append( appName(request) ).append("/kakao_callback.mb");
+			
+			redirect = true;
+			view = url.toString();
+			
+		}else if( uri.equals("/kakao_callback.mb")) {
+			String code = request.getParameter("code");
+			String error = request.getParameter("error");
+			redirect = true;
+			if( error!=null ) view = request.getContextPath();
+			else {
+				//인가 코드로 토큰 발급을 요청합니다.
+//				curl -v -X POST "https://kauth.kakao.com/oauth/token" \
+//				 -H "Content-Type: application/x-www-form-urlencoded" \
+//				 -d "grant_type=authorization_code" \
+//				 -d "client_id=${REST_API_KEY}" \
+//				 --data-urlencode "redirect_uri=${REDIRECT_URI}" \
+//				 -d "code=${AUTHORIZE_CODE}"
+				//사용자정보 가져오기에 사용할 토근 발급 받기
+				StringBuffer url = 
+				new StringBuffer("https://kauth.kakao.com/oauth/token?grant_type=authorization_code");
+				url.append("&client_id=").append(KAKAO_ID);
+				url.append("&code=").append(code);
+				
+				JSONObject json = new JSONObject( util.requsetAPI(url.toString()) );
+				String type = json.getString("token_type");
+				String token = json.getString("access_token");
+				
+				//사용자 정보 가져오기
+				//curl -v -X GET "https://kapi.kakao.com/v2/user/me" \
+				//  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+				url = new StringBuffer("https://kapi.kakao.com/v2/user/me");
+				json = new JSONObject (util.requsetAPI(url.toString(), type + " " + token));
+				/*
+				 * "id":123456789, "kakao_account": { "profile_needs_agreement": false,
+				 * "profile": { "nickname": "홍길동",
+				 * "name":"홍길동",
+				 *  "email": "sample@sample.com", "gender":"female"
+				 */
+			if(!json.isEmpty()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setSocial("K");
+				dto.setUserid(json.get("id").toString());
+				
+				json=json.getJSONObject("kakao_account");
+				dto.setName(json.has("name") ? json.getString("name") : "");
+				dto.setEmail(json.getString("email"));
+				dto.setGender(json.getString("gender").equals("female")? "여" : "남");
+				
+				//닉네임이 있으면 name에 닉네임을 담는다
+				if(json.getJSONObject("profile").has("nickname")) {
+					dto.setName( json.getJSONObject("profile").getString("nickname"));
+				}
+				
+				//카카오로그인이 처음이면 신규저장 , 아니면 변경저장
+				if(dao.member_id_check(dto.getUserid())==0) {
+					dao.member_join(dto);
+				}else {
+					dao.member_update(dto);
+					request.getSession().setAttribute("userInfo", dto);
+				}
+				
+				view = request.getContextPath();
+				
+			}
+				
+				
+			}
+			
+			
+			
+			
+			
+		}else  if( uri.equals("/id_check.mb")) {
 			//아이디 중복확인 요청
 			//화면에서 입력한 아이디가 DB에 존재하는지 확인: 비지니스로직 - DB연결처리와 관련있음
 			int count = dao.member_id_check( request.getParameter("id") );
@@ -178,6 +290,10 @@ public class MemberController extends HttpServlet {
 			response.getWriter().print(count);
 			return;
 			
+		
+		
+		
+		
 		}else if( uri.equals("/member_join.mb")) {
 			//회원가입처리 요청
 			

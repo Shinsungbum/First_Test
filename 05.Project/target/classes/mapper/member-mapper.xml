@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -26,16 +26,17 @@ select * from member where userid=#{id} and salt_pw=#{pw}
 </select>
 
 <!-- 회원가입처리 -->
-<insert id='join'>
-insert into member
-(userid, userpw, name, gender, email, post, address, phone, birth, salt, salt_pw)
-values (#{userid}, #{userpw}, #{name}, #{gender}, #{email}
-		, #{post}, #{address}, #{phone}, #{birth}, #{salt}, #{salt_pw})
-</insert>
+  <insert id="join">
+  insert into member (userid, userpw, name, gender, email, post, address, phone, birth, salt, salt_pw, social) 
+  values (#{userid}, #{userpw, jdbcType=VARCHAR}, #{name}, #{gender}, #{email} , #{post, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR} , 
+  #{phone, jdbcType=VARCHAR}, #{birth, jdbcType=VARCHAR} , #{salt, jdbcType=VARCHAR}, #{salt_pw, jdbcType=VARCHAR}, #{social, jdbcType=VARCHAR})
+  </insert> 
+
 
 <!-- 아이디 중복확인 -->
 <select id="id_check" resultType="integer">
 select count(*) from member where userid = #{userid}
 </select>
+
 
 </mapper>  

@@ -9,6 +9,7 @@
 <link href='css/member.css' rel='stylesheet'>
 <style>
 .naver { background: url("images/naver.png") center; background-size: 100%; }
+.kakao {background: url(images/kakao_login_large_narrow.png) center; background-size: 100%;}
 </style>
 </head>
 <body>
