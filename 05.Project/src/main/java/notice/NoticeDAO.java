@@ -16,23 +16,26 @@ public class NoticeDAO {
 	
 	//공지글을 신규저장
 	public void notice_insert(NoticeDTO dto) {
+		sql.insert("notice.insert", dto);
 	}
 
 	
 	//공지글 목록조회
-	public List<NoticeDTO> notice_list() {
-		return sql.selectList("notice.list");
-	}
+		public List<NoticeDTO> notice_list() {
+			return sql.selectList("notice.list");
+		}
+	
+
 	
 	//공지글 상세조회
 	public NoticeDTO notice_detail(int id) {
-		return null;
+		return sql.selectOne("notice.detail", id);
 	}
 	
 	
 	//공지글 조회수 증감처리
 	public void notice_read(int id) {
-		
+		sql.update("notice.read", id);
 	}
 	
 	

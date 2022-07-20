@@ -11756,12 +11756,19 @@ table tr th:first-child {
 	border-right: 2px solid #333 }
 table tr td { padding: 6px 10px }
 table tr { border-bottom: 1px solid #ccc }
-
+table tr th { background-color: #eee !important }
 label:not(:last-child) { margin-right: 20px }
 
+textarea {
+	resize: none;
+	padding: 10px;
+}
 input {
 	height: 30px;
 	padding: 0 10px;
+}
+input[name=title], textarea[name=content] {
+	width: calc(100% - 24px)
 }
 input[name=address] { 
 	width: 100% }
@@ -11782,6 +11789,7 @@ input[type=radio] {
 	vertical-align: middle;
 }
 
+#delete-file { display: none }
 
 
 

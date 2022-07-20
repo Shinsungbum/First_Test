@@ -1,13 +1,22 @@
 package common;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
+import javax.mail.Part;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.mail.EmailAttachment;
@@ -16,6 +25,39 @@ import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
 
 public class CommonUtil {
+	
+	//파일업로드처리
+	public HashMap<String, String> fileUpload(HttpServletRequest request, String category) {
+		//웹서버 프로젝트의 물리적위치
+		String app = request.getServletContext().getRealPath("");
+		//D:\Study_JspServlet\Workspace\.metadata\.plugins...tmp0\wtpwebapps\05.Project
+		// /upload/notice/2022/07/20/abc.txt
+		String upload = "upload/" + category 
+						+ new SimpleDateFormat("/yyy/MM/dd").format(new Date());
+		String filepath = app + upload;
+		File dir = new File(filepath);
+		if(! dir.exists()) dir.mkdirs();
+		HashMap<String, String> map = new HashMap<String, String>();
+		try {
+			Collection<javax.servlet.http.Part> files = request.getParts();
+			for(javax.servlet.http.Part file : files) {
+				System.out.println(file);
+				if( file.getName().contains("file") 
+						&& !file.getSubmittedFileName().isEmpty()) {
+					String filename = file.getSubmittedFileName();
+					String uuid = UUID.randomUUID().toString() + "_" + filename;
+					file.write( filepath + "/" + uuid );
+					map.put("filename", filename);
+					map.put("filepath", upload + "/" + uuid);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
 	
 	//Http 요청결과를 받는 처리
 	public String requsetAPI( String apiURL) {

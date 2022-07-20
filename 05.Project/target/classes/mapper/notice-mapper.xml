@@ -4,14 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="notice">
   
+  
+  <!-- 공지글 신규저장처리 -->
+ <insert id="insert">
+ 	insert into notice (title, content, writer)
+ 	values (#{title}, #{content}, #{writer})
+ </insert>
+
+
   <!-- 공지글목록조회 -->
   <select id="list" resultType="notice.NoticeDTO">
-  select * from notice
+
+select row_number() over(order by id) no, name, n.*
+   from notice n inner join member m
+   on n.writer = m.userid
+order by no desc
   </select>
   
-  <select id="name" resultType="notice.NoticeDTO">
-    select #{name}  , #{title}
-	from member m LEFT OUTER join notice n
-	on m.userid = n.writer;	
-  </select>
+  
+  <!-- 공지글 정보조회 -->
+ <select id="detail" resultType="notice.NoticeDTO">
+ select name, notice.* 
+ from notice inner join member m 
+ on notice.writer = m.userid 
+ where id = #{id}
+ </select> 
+
+
+<!-- 공지글 조회수 증가처리 -->
+<update id="read">
+update notice set readcnt = readcnt+1 where id=#{id}
+</update>
+
+
+ 
   </mapper>
