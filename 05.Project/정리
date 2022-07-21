@@ -5,3 +5,11 @@
  소셜로그인 정보를 담을 컬럼 추가
  alter table member add
  ( social varchar2(1) ); /* 네이버 : N , 카카오 : K */
+ 
+ 
+ 
+ <%@ include file="/include/layout.jsp" %>
+<div class="container-fluid px-4">
+<h3 class="mt-4">공지글쓰기</h3>
+</div>
+<%@ include file="/include/footer.jsp" %>

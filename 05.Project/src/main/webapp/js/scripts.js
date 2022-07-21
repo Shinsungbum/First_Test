@@ -13,6 +13,7 @@
 		var attached = this.files[0];
 		if( attached ){
 			$('#delete-file').css('display', 'inline');
+			$('#filename').text( attached.name );
 		}else{
 			$('#delete-file').css('display', 'none');			
 		}
@@ -22,6 +23,7 @@
 	$('#delete-file').on('click', function(){
 		$('#attach-file').val('');
 		$('#delete-file').css('display', 'none')
+		$('#filename').text(' ')
 	});
 	
 	function emptyCheck(){

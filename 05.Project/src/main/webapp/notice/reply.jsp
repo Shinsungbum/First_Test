@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/include/layout.jsp" %>
+ <%@ include file="/include/layout.jsp" %>
 <div class="container-fluid px-4">
-<h3 class="mt-4">공지글쓰기</h3>
+<h3 class="mt-4">공지글 답글쓰기</h3>
 <!-- 파일첨부시 주의사항
 	: 1. form태그의 전송방식은 post
 	  2. 파일첨부형식을 지정: enctype="multipart/form-data" 
@@ -37,7 +37,8 @@
 <!-- 	<a class='btn-empty' href='list.no'>취소</a> -->
 </div>
 
+
 </div>
 <%@ include file="/include/footer.jsp" %>
 </body>
-</html>S
+</html>
