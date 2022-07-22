@@ -18,6 +18,7 @@ import notice.NoticeDownload;
 import notice.NoticeInsert;
 import notice.NoticeList;
 import notice.NoticeRead;
+import notice.NoticeReply;
 import notice.Noticeupate;
 
 @WebServlet("*.no") @MultipartConfig
@@ -48,11 +49,22 @@ public class NoticeController extends HttpServlet {
 			//응답화면연결- 공지글목록화면
 			//rd = request.getRequestDispatcher("/notice/list.jsp");
 			view = "/notice/list.jsp";
-
+		
+		
+		}else if(  uri.equals("/reply_insert.no") ) {
+			//답글저장처리 요청
+			//화면에서 입력한 답글정보를 DB에 저장한후
+			new NoticeReply().execute(request, response);
+			//응답화면 연결 - 목록화면
+			view = "list.no";
+			redirect = true;
+			
+			
 		
 		}else if(  uri.equals("/reply.no") ) {
 			//답글쓰기화면 요청
 			//원글의 정보를 DB에서 조회해온 후
+			new NoticeDetail().execute(request, response);
 			//답글쓰기화면에 출력할 수 있도록  request에 담는다 : 비지니스로직
 			//응답화면연결 - 답글쓰기화면
 			view = "/notice/reply.jsp";

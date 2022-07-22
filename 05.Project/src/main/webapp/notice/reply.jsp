@@ -14,7 +14,7 @@
 	: 1. form태그의 전송방식은 post
 	  2. 파일첨부형식을 지정: enctype="multipart/form-data" 
  -->
-<form method='post' enctype="multipart/form-data"  action='insert.no'>
+<form method='post' enctype="multipart/form-data"  action='reply_insert.no'>
 <input type='hidden' name='writer' value='${userInfo.userid}'>
 <table class='table'>
 	<tr><th class='w-px140'>제목</th>
@@ -30,6 +30,10 @@
 		</td>
 	</tr>
 </table>
+<!-- 원글의 정보 -->
+<input type="hidden" name="root" value='${dto.root }'>
+<input type="hidden" name="step" value='${dto.step }'>
+<input type="hidden" name="indent" value='${dto.indent }'>
 </form>
 <div class='btnSet'>
 	<a class='btn-fill' onclick='if( emptyCheck() ) $("form").submit()'>저장</a>

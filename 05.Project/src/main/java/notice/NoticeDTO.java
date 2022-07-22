@@ -3,8 +3,28 @@ package notice;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private int id, readcnt, no;
+	private int id, readcnt, no, root, step, indent;
 	private String title, content, writer, name, filename, filepath;
+	private Date writedate;
+	
+	public int getRoot() {
+		return root;
+	}
+	public void setRoot(int root) {
+		this.root = root;
+	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
+	public int getIndent() {
+		return indent;
+	}
+	public void setIndent(int indent) {
+		this.indent = indent;
+	}
 	public String getFilename() {
 		return filename;
 	}
@@ -17,15 +37,14 @@ public class NoticeDTO {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
-	private Date writedate;
-	public int getId() {
-		return id;
-	}
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public int getId() {
+		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -66,8 +85,5 @@ public class NoticeDTO {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
-	
-	
-	
 	
 }
