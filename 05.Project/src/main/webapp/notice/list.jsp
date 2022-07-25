@@ -14,6 +14,17 @@
 <form method="post" action="list.no">
 <div class='list-top'>
 	<ul>
+		<li><select class='w-px100' name='search'>
+				<option value=''>전체</option>
+				<option value='title'>제목</option>
+				<option value='content'>내용</option>
+				<option value='writer'>작성자</option>
+			</select>
+		</li>
+		<li><input type="text" name='keyword'></li>
+		<li><a class="btn-fill" onclick='$("form").submit()'>검색</a></li>
+	</ul>
+	<ul>
 		<!-- 관리자회원으로 로그인한 경우만 글쓰기 가능 -->
 		<c:if test='${userInfo.admin eq "Y"}'>
 		<li><a class='btn-fill' href='new.no'>글쓰기</a></li>

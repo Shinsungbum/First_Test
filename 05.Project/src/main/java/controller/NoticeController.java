@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.CommonUtil;
 import member.MemberDAO;
 import member.MemberDTO;
+import notice.NoticeDelete;
 import notice.NoticeDetail;
 import notice.NoticeDownload;
 import notice.NoticeInsert;
@@ -80,6 +81,14 @@ public class NoticeController extends HttpServlet {
 			//응답화면연결 - 상세화면 
 			view = "/notice/detail.jsp";
 
+		}else if(  uri.equals("/delte.no") ) {
+			//화면에서 선택한 공지글을 DB에서 삭제한 후
+			new NoticeDelete().execute(request, response);
+			//응답화면 연결 - 목록화면
+			redirect = true;
+			view = "list.no";
+		
+		
 		}else if(  uri.equals("/update.no") ) {
 			//정보수정저장처리 요청
 			//화면에서 변경입력한 정보를 DB에 변경저장한 후

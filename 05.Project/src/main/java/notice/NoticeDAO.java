@@ -57,7 +57,7 @@ public class NoticeDAO {
 	
 	//공지글 삭제
 	public void notice_delete(int id) {
-		
+		sql.delete("notice.delete", id);
 	}
 	
 	

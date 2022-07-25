@@ -23,8 +23,15 @@ public class NoticeList implements Command {
 		
 		int curPage = Integer.parseInt(request.getParameter("curPage")==null
 							? "1" : request.getParameter("curPage")) ;
+		String search = request.getParameter("search") == null
+							? "" : request.getParameter("search");;
+		String keyword = request.getParameter("keyword") == null
+				 			? "" : request.getParameter("keyword");
+		
 		NoticePageDTO page = new NoticePageDTO();
 		page.setCurPage(curPage);
+		page.setSearch(search);
+		page.setKeyword(keyword);
 		page = new NoticeDAO().notice_page(page);
 		//페이지정보를 화면에 출력할 수 있도록 request에 담는다.
 		request.setAttribute("page", page);

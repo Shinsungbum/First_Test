@@ -4,9 +4,54 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="notice">
   
+  
+  <delete id="delete">
+  	delete from notice where id = #{id}
+  </delete> 
+
+  
+  <!-- 검색조건 -->
+  <sql id="search_where">
+  <if test="search == 'title' or search=='content'">
+  	where ${search} like '%' || #{keyword} || '%'
+  </if>
+  <if test="search==''"> <!-- 전체 -->
+  where title like '%' || #{keyword} || '%'
+  or content like '%' || #{keyword} || '%'
+  or writer in ( select userid from member where name like '%' || #{keyword} || '%' )
+  </if>
+  <if test="search=='writer'">
+  where writer in ( select userid from member where name like '%' || #{keyword} || '%' )
+  </if>
+  </sql>
+  
+ 
+
+  <!-- 공지글목록조회 -->
+  <select id="list" resultType="notice.NoticeDTO">
+  <!-- 페이지처리한 해당 페이지 글목록 -->
+select *   
+from (select row_number() over(order by root, step desc) no, name, n.*
+	  from notice n inner join member m
+	  on n.writer = m.userid  <include refid="search_where" />
+	  order by no desc) n
+where no between  #{beginList} and #{endList}
+  
+  
+  
+<!-- 페이징처리하지 않은 전체 글목록
+select row_number() over(order by root, step desc) no, name, n.*
+   from notice n inner join member m
+   on n.writer = m.userid
+order by no desc -->
+  </select>
+  
+  
+  
+  
   <!-- 공지글 목록수 조회 -->
   <select id="total" resultType="integer">
-  select count(*) from notice
+  select count(*) from notice <include refid="search_where" />
   </select>
   
   <!-- 공지글 답글저장처리 -->
@@ -42,25 +87,6 @@
  			#{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR})
  </insert>
 
-
-  <!-- 공지글목록조회 -->
-  <select id="list" resultType="notice.NoticeDTO">
-  <!-- 페이지처리한 해당 페이지 글목록 -->
-select *   
-from (select row_number() over(order by root, step desc) no, name, n.*
-	  from notice n inner join member m
-	  on n.writer = m.userid
-	  order by no desc) n
-where no between  #{beginList} and #{endList}
-  
-  
-  
-<!-- 페이징처리하지 않은 전체 글목록
-select row_number() over(order by root, step desc) no, name, n.*
-   from notice n inner join member m
-   on n.writer = m.userid
-order by no desc -->
-  </select>
   
   
   <!-- 공지글 정보조회 -->
