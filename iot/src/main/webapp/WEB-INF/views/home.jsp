@@ -6,11 +6,7 @@
 	<title>Home</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
-<div id='container'>
 <h3>지능형 IoT 과정</h3>
 <img style='width:80%;' src='img/hanul.png'>
-</div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>
