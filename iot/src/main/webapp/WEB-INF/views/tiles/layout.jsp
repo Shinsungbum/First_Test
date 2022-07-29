@@ -19,8 +19,12 @@
 <title>지능형 IoT ${title}</title>
 <link rel='stylesheet' type='text/css' 
 	href='css/common.css?<%=new java.util.Date()%>'>
-<link rel='icon' type='image/x-icon' href='img/hanul.ico'>	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel='icon' type='image/x-icon' href='img/hanul.ico'>
+	
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='js/common.js?<%=new java.util.Date()%>'></script>
 </head>
 <body>
 <tiles:insertAttribute name='header'/>

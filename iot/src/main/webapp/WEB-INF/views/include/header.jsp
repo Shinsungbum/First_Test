@@ -32,5 +32,4 @@ a { cursor: pointer; }
 </style>
 <link rel='stylesheet' type='text/css' 
 	href='css/common.css?<%=new java.util.Date()%>'>
-<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 

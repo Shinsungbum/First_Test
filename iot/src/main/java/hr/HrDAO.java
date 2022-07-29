@@ -23,7 +23,7 @@ public class HrDAO implements HrService {
 
 	@Override
 	public EmployeeVO employee_detail(int employee_id) {
-		return null;
+		return sql.selectOne("hr.detail", employee_id);
 	}
 
 	@Override
@@ -33,7 +33,24 @@ public class HrDAO implements HrService {
 
 	@Override
 	public int employee_delete(int employee_id) {
-		return 0;
+		return sql.delete("hr.delete", employee_id);
+	}
+
+	@Override
+	public List<DepartmentVO> employee_department_list() {
+		//사원이 속한 부서목록
+		return sql.selectList("hr.employee_department_list");
+	}
+
+	@Override
+	public List<EmployeeVO> employee_list(int department_id) {
+		//부서에 속한 사원목록
+		return sql.selectList("hr.department_employee_list", department_id);
+	}
+
+	@Override
+	public List<DepartmentVO> department_list() {
+		return sql.selectList("hr.department_list");
 	}
 
 }

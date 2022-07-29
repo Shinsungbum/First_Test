@@ -24,27 +24,36 @@ table td a:hover { font-weight: bold; }
 
 a:link, a:visited { text-decoration: none;  color:inherit; }
 
+.tb-wrap { height: 496px; overflow-y:auto; margin:0 auto;  }
+.tb-wrap .tb-list { width: 100% }
+
+#list-top {
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+#list-top ul { display: flex; }
+#list-top ul li:not(:first-child) { margin-left: 5px }
+
+
 .btnSet {
 	margin: 20px auto;
 }
-
-a.btn-fill, a.btn-empty{
-	height: 28px; padding: 3px 15px;
+a.btn-fill, a.btn-empty {
+	height: 28px;	padding: 3px 15px;
 	border: 1px solid #3367d6;
 	border-radius: 3px;
 	box-shadow: 2px 2px 3px #022d72;
-}
-
+} 
 a.btn-fill {
-	background-color: #3367d6; color: #fff;
+	background-color: #3367d6;	color: #fff;
 }
 
 a.btn-empty {
-	background-color: #fff; color: #3367d6;
+	background-color: #fff;	color: #3367d6;
 }
-
-input:focus { outline: none; border-color: #3367d6;}
-
+	
 input {
 	height: 30px;
 	padding: 0 10px;
@@ -53,21 +62,22 @@ input {
 }
 
 input[type=radio] {
-	width : 18px; height: 18px;
+	width: 18px; height: 18px;
 	margin: 0 5px 2px;
 	vertical-align: middle;
 }
 
+.ui-datepicker table tr { height: inherit; }
+
+input:focus, select:focus { outline: none;  border-color: #3367d6; }
+
 label:not(:last-child) { margin-right: 20px }
-
-
-
-
-
-
-
-
-
+	
+select {
+	height: 32px;	cursor: pointer;
+	padding-left: 10px;
+	border: 1px solid #b0b0b0;
+}	
 
 
 
