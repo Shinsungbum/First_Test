@@ -13,7 +13,7 @@ public class HrDAO implements HrService {
 	
 	@Override
 	public int employee_insert(EmployeeVO vo) {
-		return 0;
+		return sql.insert("hr.insert", vo);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class HrDAO implements HrService {
 
 	@Override
 	public int employee_update(EmployeeVO vo) {
-		return 0;
+		return sql.update("hr.update", vo);
 	}
 
 	@Override
@@ -51,6 +51,16 @@ public class HrDAO implements HrService {
 	@Override
 	public List<DepartmentVO> department_list() {
 		return sql.selectList("hr.department_list");
+	}
+
+	@Override
+	public List<JobVO> job_list() {
+		return sql.selectList("hr.job_list");
+	}
+
+	@Override
+	public List<EmployeeVO> manager_list() {
+		return sql.selectList("hr.manager_list");
 	}
 
 }

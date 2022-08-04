@@ -23,6 +23,8 @@
 		</select>
 	</li>
 </ul>
+<ul><li><a class='btn-fill' href='new.hr'>신규사원등록</a>
+</ul>
 </div>
 </form>
 

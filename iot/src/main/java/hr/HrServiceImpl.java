@@ -13,7 +13,7 @@ public class HrServiceImpl implements HrService {
 	
 	@Override
 	public int employee_insert(EmployeeVO vo) {
-		return 0;
+		return dao.employee_insert(vo);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class HrServiceImpl implements HrService {
 
 	@Override
 	public int employee_update(EmployeeVO vo) {
-		return 0;
+		return dao.employee_update(vo);
 	}
 
 	@Override
@@ -49,6 +49,16 @@ public class HrServiceImpl implements HrService {
 	@Override
 	public List<DepartmentVO> department_list() {
 		return dao.department_list();
+	}
+
+	@Override
+	public List<JobVO> job_list() {
+		return dao.job_list();
+	}
+
+	@Override
+	public List<EmployeeVO> manager_list() {
+		return dao.manager_list();
 	}
 
 }

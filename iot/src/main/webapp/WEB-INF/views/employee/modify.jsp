@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +20,22 @@
 	</td>
 </tr>
 <tr><th>부서명</th>
-	<td><select name='department_id' class='w-px160'>
-			<option value="-1">소속없음</option>
-			<c:forEach items="${departments }" var="d">
-			<option ${d.department_id eq vo.department_id ? 'selected' : '' } 
-				value="${department_id }">${d.department_name }</option>
+	<td><select name='department_id' class='w-px200'>
+			<option value='-1'>소속없음</option>
+			<c:forEach items="${departments}" var="d">
+			<option ${d.department_id eq vo.department_id ? 'selected' : ''}  
+				value='${d.department_id}'>${d.department_name}</option>
 			</c:forEach>
 		</select>
 	</td>
 </tr>
 <tr><th>업무제목</th>
-	<td>${vo.job_title }</td>
+	<td><select class='w-px200' name='job_id'>
+			<c:forEach items='${jobs}' var='j'>
+			<option ${vo.job_id eq j.job_id ? 'selected' : ''} value='${j.job_id}'>${j.job_title}</option>
+			</c:forEach>
+		</select>
+	</td>
 </tr>
 <tr><th>이메일</th>
 	<td><input type='text' name='email' value='${vo.email}'></td>
@@ -45,6 +50,7 @@
 	<td><input type='text' name='hire_date' class='date' value='${vo.hire_date}'></td>
 </tr>
 </table>
+<input type='hidden' name='employee_id' value='${vo.employee_id}'>
 </form>
 <div class='btnSet'>
 	<a class='btn-fill' onclick='$("form").submit()'>저장</a>
@@ -53,8 +59,6 @@
 
 <script type="text/javascript">
 $(function(){
-
-	
 	$('.date').datepicker();
 	$.datepicker.setDefaults( { maxDate:new Date() } );
 })

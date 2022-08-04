@@ -5,10 +5,16 @@ import java.sql.Date;
 public class EmployeeVO {
 	private int employee_id, department_id, salary;
 	private String  last_name, first_name, name, department_name
-					, job_id, job_title, email, phone_number;
+					, job_id, job_title, email, phone_number, manager_id;
 	private Date hire_date;
 	public int getEmployee_id() {
 		return employee_id;
+	}
+	public String getManager_id() {
+		return manager_id;
+	}
+	public void setManager_id(String manager_id) {
+		this.manager_id = manager_id;
 	}
 	public String getEmail() {
 		return email;
