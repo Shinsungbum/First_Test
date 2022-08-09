@@ -2,8 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="customer">
 
-<select id="list" resultType='customer.CustomerVO'>
-select * from customer order by name
+
+<!-- 고객정보조회 -->
+<select id='list' resultType='customer.CustomerVO'>
+select *  from customer 
+</select>
+
+<!-- 고객목록조회 -->
+<select id="detail" resultType='customer.CustomerVO'>
+select * from customer where rownum = 1
 </select>
 
 </mapper>

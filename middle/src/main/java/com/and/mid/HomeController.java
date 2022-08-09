@@ -1,4 +1,3 @@
-
 package com.and.mid;
 
 import java.text.DateFormat;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import customer.CustomerDAO;
 
@@ -20,12 +20,15 @@ import customer.CustomerDAO;
  */
 @Controller
 public class HomeController {
+	@Autowired CustomerDAO dao ;
 	
-	@Autowired CustomerDAO dao;
-
+	@ResponseBody
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home() {
+		
 		System.out.println(dao.customer_list().size());
+		
+		
 		return "home";
 	}
 	

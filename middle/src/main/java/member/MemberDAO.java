@@ -1,6 +1,6 @@
-package customer;
+package member;
 
-import java.util.List;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CustomerDAO {
+public class MemberDAO {
 	@Autowired @Qualifier("hanul") private SqlSession sql;
-
-	public List<CustomerVO> customer_list() {
-		return sql.selectList("customer.list");
+	
+	
+	public MemberVO member_login(String id, String pw) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pw", pw);
+		return sql.selectOne("member.login", map);
 	}
-
-	public CustomerVO customer_detail() {
-		return sql.selectOne("customer.detail");
-	}
-
 }

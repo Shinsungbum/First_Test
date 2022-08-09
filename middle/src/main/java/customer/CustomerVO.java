@@ -1,6 +1,6 @@
 package customer;
 
-public class CustomerVO {
+public class  CustomerVO{
 	
 	private int id;
 	private String name, gender, email, phone;

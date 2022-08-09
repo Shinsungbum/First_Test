@@ -9,6 +9,6 @@
 	Hello world!  
 </h1>
 
-<a href="list.cu">list</a>
+<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
