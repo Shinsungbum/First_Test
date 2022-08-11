@@ -2,6 +2,7 @@ package com.and.mid;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,28 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value =  "/detail.cu" , produces = "text/html;charset=utf-8")
-	public String detail(HttpServletResponse res) {
-		CustomerVO vo = dao.customer_detail();
+	public String detail(int id) {
+		CustomerVO vo = dao.customer_detail(id);
 		Gson gson = new Gson();
 		return gson.toJson(vo);
+	}
+	//서버 <-> 클라이언트(안드)
+	// 통신을 할때 ㄷ에터 이동을 String으로 함
+	@RequestMapping(value =  "/update.cu" , produces = "text/html;charset=utf-8")
+	public String detail(String data) {
+		System.out.println(data);
+		CustomerVO vo = new Gson().fromJson( data, CustomerVO.class);
+		int result = dao.customer_update(vo);
+		Gson gson = new Gson();
+		return gson.toJson(result);
+	}
+	@RequestMapping(value =  "/delete.cu" , produces = "text/html;charset=utf-8")
+	public String delete(int id) {
+		System.out.println(id);
+		//int delid = Integer.parseInt(id);
+		int result = dao.customer_delete(id);
+		Gson gson = new Gson();
+		return gson.toJson(result);
 	}
 	
 

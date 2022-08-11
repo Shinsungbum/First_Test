@@ -15,8 +15,16 @@ public class CustomerDAO {
 		return sql.selectList("customer.list");
 	}
 
-	public CustomerVO customer_detail() {
-		return sql.selectOne("customer.detail");
+	public CustomerVO customer_detail(int id) {
+		return sql.selectOne("customer.detail", id);
 	}
 
+	
+	public int customer_update(CustomerVO vo) {
+		return sql.update("customer.update", vo);
+	}
+
+	public int customer_delete(int id) {
+		return sql.delete("customer.delete", id);
+	}
 }
