@@ -49,17 +49,20 @@ public class CustomerController {
 	//서버 <-> 클라이언트(안드)
 	// 통신을 할때 ㄷ에터 이동을 String으로 함
 	@RequestMapping(value =  "/update.cu" , produces = "text/html;charset=utf-8")
-	public String detail(String data) {
+	public String update(String data) {
 		System.out.println(data);
 		CustomerVO vo = new Gson().fromJson( data, CustomerVO.class);
 		int result = dao.customer_update(vo);
 		Gson gson = new Gson();
 		return gson.toJson(result);
 	}
+	
+	
 	@RequestMapping(value =  "/delete.cu" , produces = "text/html;charset=utf-8")
-	public String delete(int id) {
+	public String delete(int id) {// <= 파라메터로 보낼 때 String ???
+								  // 기본형 데이터 타입 : String , double, int ...
+								  // DTO , VO 구조는 바로 파라메터로 넘길방법이 없음/ => 이럴 땐 Json : Key , value 사용
 		System.out.println(id);
-		//int delid = Integer.parseInt(id);
 		int result = dao.customer_delete(id);
 		Gson gson = new Gson();
 		return gson.toJson(result);
