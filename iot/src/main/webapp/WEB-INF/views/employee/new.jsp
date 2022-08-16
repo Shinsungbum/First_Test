@@ -37,7 +37,7 @@
 	<td><select name='manager_id' class='w-px300'>
 			<option value="-1">매니저 없음</option>
 			<c:forEach items="${managers }" var='m'>
-			<option value="${m.employee_id }">${m.first_name }_${m.last_name }</option>
+			<option value="${m.employee_id }">${m.name }</option>
 			</c:forEach>
 		</select>
 	</td>
@@ -58,7 +58,7 @@
 </form>
 <div class='btnSet'>
 	<a class='btn-fill' onclick='$("form").submit()'>저장</a> 
-	<a class='btn-empty' href='list.hr'>취소</a> 
+	<a class='btn-empty'onclick='location="list.hr"'>취소</a> 
 </div>
 <script>
 var today = new Date();

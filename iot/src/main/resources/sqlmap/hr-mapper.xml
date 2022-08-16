@@ -7,8 +7,10 @@
 insert into employees(employee_id, last_name, first_name, department_id, job_id,  manager_id, email, phone_number, salary, hire_date)
 values (employees_seq.nextval, #{last_name}, #{first_name}
 ,
- <if test="department_id==-1">null</if>
- <if test="department_id!=-1">#{department_id}</if>
+  <choose>
+ 	<when test="department_id==-1">null</when>
+ 	<otherwise>#{department_id}</otherwise>
+ </choose>
 , #{job_id}
 ,
 <if test="manager_id==-1">null</if>
@@ -18,9 +20,9 @@ values (employees_seq.nextval, #{last_name}, #{first_name}
 
 <!-- 매니저리스트 조회요청 -->
 <select id="manager_list" resultType="hr.EmployeeVO">
-select *
+select last_name || ' ' || first_name name, employee_id 
 from employees
-order by first_name
+order by name
 </select>
 
 <!-- 사원정보 변경처리 요청 -->
@@ -98,7 +100,7 @@ FROM employees e LEFT OUTER JOIN departments d using (department_id)
 
 <!-- 사원 리스트 출력 -->
 <select id="list" resultType="hr.EmployeeVO">
-select e.employee_id, e.first_name||' '||e.last_name name, d.department_name, j.job_title, e.hire_date
+select e.employee_id, e.last_name||' '||e.first_name name, d.department_name, j.job_title, e.hire_date
 from employees e LEFT OUTER join departments d
 on e.department_id = d.department_id
 LEFT OUTER JOIN jobs j
