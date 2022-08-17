@@ -43,8 +43,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String member_salt(String userid) {
-		dao.member_salt(userid);
-		return null;
+		
+		return dao.member_salt(userid);
 	}
 
+	@Override
+	public int member_reset_password(MemberVO vo) {
+		return dao.member_reset_password(vo);
+	}
+
+	@Override
+	public int member_userid_email(MemberVO vo) {
+		return dao.member_userid_email(vo);
+	}
+
+	
 }

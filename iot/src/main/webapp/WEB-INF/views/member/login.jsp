@@ -20,6 +20,14 @@
 	<div><a href='findPw'>비밀번호 찾기</a></div>
 </div>
 <script type="text/javascript">
+$('#pw').keypress(function(e) {
+	if( e.keyCode==13){
+		login();
+	}
+});
+
+
+
 function login() {
 	if( !emptyCheck() ) return;
 	

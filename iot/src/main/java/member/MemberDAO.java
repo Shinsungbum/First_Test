@@ -51,4 +51,14 @@ public class MemberDAO implements MemberService {
 		return sql.selectOne("member.salt", userid);
 	}
 
+	@Override
+	public int member_reset_password(MemberVO vo) {
+		return sql.update("member.reset_password", vo);
+	}
+
+	@Override
+	public int member_userid_email(MemberVO vo) {
+		return sql.selectOne("member.userid_email", vo);
+	}
+
 }

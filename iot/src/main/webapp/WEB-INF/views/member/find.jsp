@@ -14,10 +14,10 @@
 	<a href='<C:url value="/"/>'><img src="img/hanul.logo.png"> </a>
 	<div class='box'>
 		<h3>비밀번호 재발급</h3>
-		<form>
+		<form method='post' action='resetPw'>
 		<ul>
-			<li><input type="text" name='id' class='chk' placeholder="아이디"> </li>
-			<li><input type="password" name='pw' class='chk' placeholder="비밀번호"> </li>
+			<li><input type="text" name='userid' class='chk' placeholder="아이디"> </li>
+			<li><input type="text" name='name' class='chk' placeholder="이름"> </li>
 			<li><input type="text" name='email' class='chk' placeholder="이메일"> </li>
 			<li><input type="reset" value="다시입력"> </li>
 			<li><input type="button" value="비밀번호 재발급" 

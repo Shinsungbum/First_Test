@@ -14,6 +14,10 @@ public class NoticeDAO {
 	public List<NoticeVO> noticeList() {
 		return sql.selectList("notice.list");
 	}
+
+	public String test() {
+		return sql.selectOne("notice.test");
+	}
 	
 	
 	

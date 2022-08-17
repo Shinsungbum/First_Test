@@ -85,6 +85,11 @@ select {
 	transform: translate(-50%, -50%);
 }
 
+.left{text-align: left;}
+.right{text-align: right;}
+
+div.valid{color: #008000; font-size: 14px;}
+div.invalid{color: #ff0000; font-size: 14px;}
 
 
 .w-pct90 { width:90% }

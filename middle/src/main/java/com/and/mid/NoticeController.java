@@ -17,6 +17,15 @@ import notice.NoticeVO;
 @RestController
 public class NoticeController {
 	@Autowired NoticeDAO dao ;
+	
+	@RequestMapping(value =  "/test.no" , produces = "text/html;charset=utf-8")
+	public String Test() {
+		String test = dao.test();
+		return test;
+	}
+	
+	
+	
 	@RequestMapping(value =  "/list.no" , produces = "text/html;charset=utf-8")
 	public String getList(HttpServletResponse res) {
 		List<NoticeVO> list = dao.noticeList();
