@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="andmember">
+
+
+<!-- 고객정보조회 -->
+<select id='login' resultType='andmember.AndMemberVO'>
+select * 
+from and_member 
+where email = #{email} 
+and NVL(pw ,0) = NVL(#{pw, jdbcType=VARCHAR}, 0)  
+</select>
+
+<insert id="join">
+insert into and_member (email, pw ,name , gender )
+values(#{email} , #{pw, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR} )
+</insert>
+
+
+</mapper>
