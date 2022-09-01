@@ -20,7 +20,9 @@
 <div class='btnSet'>
 	<a class='btn-fill' href='list.cu'>고객목록</a>
 	<a class='btn-fill' href='modify.cu?id=${vo.id }'>정보수정</a>
-	<a class='btn-fill' onclick="if( confirm('정말삭제?')) href='delete.cu?id=${vo.id }'">정보삭제</a>
+	<a class='btn-fill' 
+	onclick="if( confirm('정말 삭제?') ) href='delete.cu?id=${vo.id}'">정보삭제</a>
 </div>
+
 </body>
 </html>

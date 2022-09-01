@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HrDAO implements HrService {
 	@Autowired @Qualifier("hr") private SqlSession sql;
-	
+
 	@Override
 	public int employee_insert(EmployeeVO vo) {
 		return sql.insert("hr.insert", vo);
@@ -59,8 +59,8 @@ public class HrDAO implements HrService {
 	}
 
 	@Override
-	public List<EmployeeVO> manager_list() {
-		return sql.selectList("hr.manager_list");
+	public List<EmployeeVO> employee_name_list() {
+		return sql.selectList("hr.employee_name_list");
 	}
 
 }

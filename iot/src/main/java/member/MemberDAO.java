@@ -10,11 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MemberDAO implements MemberService {
 	@Autowired @Qualifier("hanul") private SqlSession sql;
-	
+
 	@Override
 	public int member_join(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.insert("member.join", vo);
 	}
 
 	@Override
@@ -30,14 +29,13 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public boolean member_id_check(String userid) {
-		// TODO Auto-generated method stub
-		return false;
+		//존재하는 경우: 1(true), 아니면 0(false)
+		return (Integer)sql.selectOne("member.id_check", userid)==1 ? true : false;
 	}
 
 	@Override
-	public int member_update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int member_update(MemberVO vo) {
+		return sql.update("member.update", vo);
 	}
 
 	@Override

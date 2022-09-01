@@ -10,6 +10,7 @@
 	<c:when test="${category eq 'bo'}"><c:set var='title' value='- 방명록'/></c:when>
 	<c:when test="${category eq 'da'}"><c:set var='title' value='- 공공데이터'/></c:when>
 	<c:when test="${category eq 'vi'}"><c:set var='title' value='- 시각화'/></c:when>
+	<c:when test="${category eq 'join'}"><c:set var='title' value='- 회원가입'/></c:when>
 </c:choose>
 
 <!DOCTYPE html>
@@ -22,10 +23,12 @@
 <link rel='stylesheet' type='text/css' href='css/member.css?<%=new java.util.Date()%>'>
 	
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'>
 <link rel='icon' type='image/x-icon' href='img/hanul.ico'>
 	
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js'></script>
 <script src='js/common.js?<%=new java.util.Date()%>'></script>
 </head>
 <body>

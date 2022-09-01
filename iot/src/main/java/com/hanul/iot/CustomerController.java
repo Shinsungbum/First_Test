@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,32 +15,24 @@ import customer.CustomerVO;
 @Controller
 public class CustomerController {
 	@Autowired private CustomerServiceImpl service ;
-	
+
 	//고객정보 삭제처리 요청
 	@RequestMapping("/delete.cu")
 	public String delete(int id) {
-		//해당 고객정보를 DB에서 삭제한 후 : 비지니스로직
+		//해당 고객정보를 DB에서 삭제한 후:비지니스로직
 		service.customer_delete(id);
-		//응답화면 연결
+		//응답화면연결
 		return "redirect:list.cu";
 	}
 	
-	
-	
-	
-	
-	
-	
-	//고객의 정보를 수정저장처리
+	//고객정보 수정저장처리 요청
 	@RequestMapping("/update.cu")
 	public String update(CustomerVO vo) {
-		//화면에서 변경 입력한 정보를 DB에 변경저장한 후 : 비지니스로직
+		//화면에서 변경입력정보를  DB에 변경저장한 후 : 비지니스로직
 		service.customer_update(vo);
-		//응답화면 연결
-		return "redirect:detail.cu?id="+ vo.getId();
+		//응답화면연결
+		return "redirect:detail.cu?id="+vo.getId();
 	}
-	
-
 	
 	//고객정보 수정화면 요청
 	@RequestMapping("/modify.cu")
@@ -83,8 +74,7 @@ public class CustomerController {
 		//응답화면연결
 		return "customer/detail";
 	}
-	
-	
+
 	//고객목록화면 요청
 	@RequestMapping("/list.cu")
 	public String list(Model model, HttpSession session) {

@@ -1,8 +1,16 @@
 package member;
 
 public class MemberVO {
-	private String userid, name, userpw, gender, email, birth
+	private String userid, name, userpw, gender, email, birth, profile
 					, phone, address, admin, post, salt, social;
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -99,6 +107,5 @@ public class MemberVO {
 	public void setSocial(String social) {
 		this.social = social;
 	}
-	
 	
 }

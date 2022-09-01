@@ -1,9 +1,9 @@
 package customer;
 
 public class CustomerVO {
+	
 	private int id;
 	private String name, gender, email, phone;
-	
 	
 	public int getId() {
 		return id;

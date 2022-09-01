@@ -3,13 +3,11 @@ package hr;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HrServiceImpl implements HrService {
 	@Autowired private HrDAO dao;
-	
 	
 	@Override
 	public int employee_insert(EmployeeVO vo) {
@@ -57,8 +55,8 @@ public class HrServiceImpl implements HrService {
 	}
 
 	@Override
-	public List<EmployeeVO> manager_list() {
-		return dao.manager_list();
+	public List<EmployeeVO> employee_name_list() {
+		return dao.employee_name_list();
 	}
 
 }

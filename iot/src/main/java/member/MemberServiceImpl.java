@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-	@Autowired MemberDAO dao;
+	@Autowired private MemberDAO dao;
+	
 	@Override
 	public int member_join(MemberVO vo) {
-		return 0;
+		return dao.member_join(vo);
 	}
 
 	@Override
 	public MemberVO member_myinfo(String userid) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -25,14 +27,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean member_id_check(String userid) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.member_id_check(userid);
 	}
 
 	@Override
-	public int member_update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int member_update(MemberVO vo) {
+		return dao.member_update(vo);
 	}
 
 	@Override
@@ -43,7 +43,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String member_salt(String userid) {
-		
 		return dao.member_salt(userid);
 	}
 
@@ -57,5 +56,4 @@ public class MemberServiceImpl implements MemberService {
 		return dao.member_userid_email(vo);
 	}
 
-	
 }

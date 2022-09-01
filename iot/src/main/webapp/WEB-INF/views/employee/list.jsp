@@ -23,7 +23,7 @@
 		</select>
 	</li>
 </ul>
-<ul><li><a class='btn-fill' href='new.hr'>신규사원등록</a>
+<ul><li><a class='btn-fill' href='new.hr'>신규사원등록</a></li>
 </ul>
 </div>
 </form>
@@ -32,8 +32,8 @@
 <table class='tb-list'>
 <colgroup>
 	<col width='80px'>
-	<col width='200px'>
-	<col width='300px'>
+	<col width='250px'>
+	<col width='250px'>
 	<col>
 	<col width='140px'>
 </colgroup>

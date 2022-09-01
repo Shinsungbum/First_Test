@@ -4,11 +4,8 @@
 
 <!-- 고객정보 삭제 -->
 <delete id="delete">
-delete  from customer where id=#{id}
+delete from customer where id=#{id}
 </delete>
-
-
-
 
 <!-- 고객정보 변경저장 -->
 <update id="update">
@@ -16,26 +13,21 @@ update customer set gender=#{gender}, email=#{email}, phone=#{phone}
 where id=#{id}
 </update>
 
-
-<!-- 신규고객 저장 -->
-<insert id='insert'>
+<!-- 신규고객저장 -->
+<insert id="insert">
 insert into customer(name, gender, email, phone)
-values (#{name}, #{gender}, #{email}, #{phone})
+values (#{name}, #{gender}, #{email}, #{phone}) 
 </insert>
 
 
-<!--고갱정보조회 -->
-<select id="detail" resultType='customer.CustomerVO'>
-select * from customer where id=#{id}
+<!-- 고객정보조회 -->
+<select id='detail' resultType='customer.CustomerVO'>
+select *  from customer where id=#{id}
 </select>
-
-
 
 <!-- 고객목록조회 -->
 <select id="list" resultType='customer.CustomerVO'>
 select * from customer order by name
 </select>
-
-
 
 </mapper>

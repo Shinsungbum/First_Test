@@ -38,8 +38,8 @@
 </table>
 <div class='btnSet'>
 	<a href='list.hr' class='btn-fill'>사원목록</a>
-	<a href='modify.hr?id=${vo.employee_id }' class='btn-fill'>정보수정</a>
-	<a onclick="if(confirm('사원 ${vo.last_name } ${vo.first_name } 삭제 하시겠습니까?')) href='delete.hr?id=${vo.employee_id }'" class='btn-fill'>정보삭제</a>
+	<a href='modify.hr?id=${vo.employee_id}' class='btn-fill'>정보수정</a>
+	<a onclick="if( confirm('사원 [${vo.last_name} ${vo.first_name}] 삭제?') ) href='delete.hr?id=${vo.employee_id}'" class='btn-fill'>정보삭제</a>
 </div>
 
 </body>
