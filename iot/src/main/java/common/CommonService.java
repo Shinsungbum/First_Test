@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletOutputStream;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +28,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class CommonService {
+	
+	//공공데이터 요청결과 문자를 json 으로 변환하여 필요한 데이터를 수집한다
+	public Map<String, Object> requestAPItoMap( StringBuffer url ) {
+		JSONObject json = new JSONObject( requestAPI( url ) );
+		json = json.getJSONObject( "response" );
+		json = json.getJSONObject( "body" );
+		int count = 0;
+		if( json.has("totalCount")) count = json.getInt("totalCount");
+		if( json.get("items") instanceof JSONObject ) {
+			//items : "", items : { item:{}, item:{},... }
+			json = json.getJSONObject( "items" ); 
+		}
+		json.put("count", count);
+		return json.toMap();
+	}
+	
 	
 	//회원가입축하 메일 보내기
 	public void sendWelcomeMail(String email, String name, String attach) {

@@ -10,7 +10,7 @@
 		<li><a ${category eq 'no' ? 'class="active"' : ''} href='list.no'>공지사항</a></li>
 		<li><a ${category eq 'bo' ? 'class="active"' : ''} href='list.bo'>방명록</a></li>
 		<li><a ${category eq 'jo' ? 'class="active"' : ''} href='list.jo'>방명록테스트</a></li>
-		<li><a ${category eq 'da' ? 'class="active"' : ''} >공공데이터</a></li>
+		<li><a ${category eq 'da' ? 'class="active"' : ''} href='list.da'>공공데이터</a></li>
 		<li><a ${category eq 'vi' ? 'class="active"' : ''} >시각화</a></li>
 	</ul>
 </div>

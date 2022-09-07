@@ -131,6 +131,7 @@ table td .items-center:not(:first-child) { margin-top: 5px }
 	display: none;
 }
 
+
 #popup img { width:100%; height: 100%; }
 
 
@@ -166,6 +167,7 @@ ul.grid li div:nth-child(2) { padding: 0 10px; }
 ul.grid li div { text-align: left; padding: 9px 10px; } 
 ul.grid li div a:hover { font-weight: bold } 
 
+.loading{display: none;}
 .w-pct90 { width:90% }
 .w-pct80 { width:80% }
 .w-pct70 { width:70% }

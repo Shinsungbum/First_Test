@@ -19,6 +19,16 @@ import hrd.HrdVO;
 public class HrdController {
 	@Autowired private HrdServiceImpl service;
 	
+	//새로운 직업정보등록
+	@RequestMapping("/new.jo")
+	public String insert() {
+		//응답화면 요청
+		return "hrd/new";
+	}
+	
+	
+	
+	
 	//직업정보 상세화면 요청
 	@RequestMapping("/detail.jo")
 	public String detail(@ModelAttribute("id") int id, Model model) {

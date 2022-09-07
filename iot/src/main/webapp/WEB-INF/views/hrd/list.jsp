@@ -26,6 +26,11 @@ color: gray;
 <body>
 <h1>직업사전 검색</h1>
 <form method="post">
+<div class='btnSet'>
+	<c:if test="${not empty loginInfo}">
+		<a class='btn-fill' href='new.jo'>직업추가</a>
+	</c:if>
+</div>
 <c:forEach items="${list }" var='vo'>
 <table class='left'>
 <tr>
