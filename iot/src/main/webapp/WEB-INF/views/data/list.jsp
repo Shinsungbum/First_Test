@@ -16,6 +16,37 @@ ul.pharmacy li div:first-child { height: 25px; }
 ul.pharmacy li div:last-child { font-size: 14px; }
 
 table.animal img { width: 100px; height: 100px;}
+
+ul.animal img { width: 100%; height: 100%; }
+ul.animal li { display: flex; flex-direction: column; }
+ul.animal .info { 
+	display: grid;
+    grid-template-columns: 2.5fr 3fr;
+    grid-column-gap: 8px;
+    height: 105px !important;
+    padding-bottom: 0;
+}
+ul.animal .info div {
+	padding: 0 !important;
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+ul.animal .info div:first-child {
+	height: 100px;
+    grid-row: 1/5;
+}
+ul.animal .info div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+ul.animal .care {
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -48,6 +79,7 @@ table.animal img { width: 100px; height: 100px;}
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWIDq81BxfQQDXd_Vj1mnMfHU8xTw5KOE"> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsrerDHJrp9Wu09Ij7MUELxCTPiYfxfBI"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=295364ba6aaf47ea28434befac53e135"></script>
+<script src='js/animal.js?<%=new java.util.Date()%>'></script>
 <script>
 $(window).resize(function(){
 	center( $('#popup'), $('#popup-background') );
@@ -169,6 +201,7 @@ $('.option a').click(function(){
 
 //약국정보조회
 function pharmacy_list( page ){
+	$('.animal-top').empty();
 	//$('.page-list').html('');
 	$('.page-list').empty();
 	loading(true);
@@ -298,38 +331,6 @@ function showGoogleMap( show ){
 	    map,
     });
 }
-
-
-//유기동물정보조회
-function animal_list( page ){
-	loading(true);
-	$('#data-list').empty();
-	$('.page-list').empty();
-	
-	var animal = new Object();
-	animal.pageNo = page;
-	animal.rows = pageList;
-	
-	$.ajax({
-		url: 'data/animal/list',
-		//data: { pageNo: page, rows: pageList },
-		data: JSON.stringify(animal),
-		type: 'post',
-		contentType: 'application/json',
-		success: function(response){
-			//console.log( response );
-			$('#data-list').html( response );
-			loading(false);
-			
-		},error: function(req,text){
-			alert(text+':'+req.status);
-			loading(false);
-		}
-	});
-	
-}
-
-
 </script>
 </body>
 </html>

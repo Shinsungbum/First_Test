@@ -33,12 +33,20 @@ public class CommonService {
 	public Map<String, Object> requestAPItoMap( StringBuffer url ) {
 		JSONObject json = new JSONObject( requestAPI( url ) );
 		json = json.getJSONObject( "response" );
-		json = json.getJSONObject( "body" );
+		int code = Integer.parseInt( 
+						json.getJSONObject("header")
+							.getString("resultCode") );
 		int count = 0;
-		if( json.has("totalCount")) count = json.getInt("totalCount");
-		if( json.get("items") instanceof JSONObject ) {
-			//items : "", items : { item:{}, item:{},... }
-			json = json.getJSONObject( "items" ); 
+		if( code==0 ) {
+			json = json.getJSONObject( "body" );
+			if( json.has("totalCount") ) count = json.getInt("totalCount");
+			if( json.get("items") instanceof JSONObject ) {
+				//items : "", items : { item:{}, item:{},... }
+				json = json.getJSONObject( "items" ); 
+			}
+			
+		}else {
+			json.put("item", new JSONObject());
 		}
 		json.put("count", count);
 		return json.toMap();
@@ -163,7 +171,6 @@ public class CommonService {
 	        con.setRequestMethod("GET");
 	        int responseCode = con.getResponseCode();
 	        BufferedReader br;
-	        System.out.print("responseCode="+responseCode);
 	        if(responseCode==200) { // 정상 호출
 	          br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
 	        } else {  // 에러 발생
@@ -193,7 +200,6 @@ public class CommonService {
 			con.setRequestProperty("Authorization", property);
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
-			System.out.print("responseCode="+responseCode);
 			if(responseCode==200) { // 정상 호출
 				br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
 			} else {  // 에러 발생

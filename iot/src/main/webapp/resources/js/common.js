@@ -58,71 +58,78 @@ $(function(){
 	});
 	
 	
-	$(document).on('change', '.attach-file', function(){
+});
+
+function loading(is){
+	$('.loading').css('display', is ? 'block' : 'none');
+}
+
+
+$(document).on( 'change', '.attach-file', function(){
 		var attached = this.files[0];
 		var $div = $(this).closest('div');
-		//선택한 파일이 있는 경우
+		//선택한 파일 있는 경우
 		if( attached ){
 			//바꿔 첨부함으로써 DB에서 삭제할 파일정보(id) 관리
-			var removed = $('[name=removed]').val();		
-			var id = $(this).closest('div').data('id');
-			if( id ) removed += (removed=='' ? '' : ',') + id;
-			$('[name=removed]').val(removed);
+			var removed = $('[name=removed]').val();
+			var id = $div.data('id');
+			if( id ) removed += (removed=='' ? '' : ',' ) + id;
+			$('[name=removed]').val( removed );
 			//삭제할 태그의 data 속성을 삭제
 			$div.removeAttr('data-id');
-			console.log($('[name=removed]').val());
+			console.log( $('[name=removed]').val() );
 			
 			//원래 선택된 파일이 없던 경우만 태그복제
-			if( $div.children('.file-name').text() == ''){
+			if( $div.children('.file-name').text()=='' ){
 				copyFileTag();
 			}
 			
 			$div.children('.file-name').text( attached.name );		//선택한 파일명 보이게
 			$div.children('.delete-file').css('display', 'inline'); //삭제버튼 보이게
-		} else{
+		}else{
 			$div.remove();
 		}
 		
-	}).on ( 'click', '.delete-file', function(){
-		//삭제한 파일정보(id) 관리
-		var removed = $('[name=removed]').val();		
-		var id = $(this).closest('div').data('id');
-		if( id ) removed += (removed=='' ? '' : ',') + id;
-		$('[name=removed]').val(removed);
-		console.log( removed );
-		$(this).closest('div').remove();
-	});
+		
+}).on( 'click', '.delete-file', function(){
+	//삭제한 파일정보(id) 관리
+	var removed = $('[name=removed]').val();
+	var id = $(this).closest('div').data('id');
+	if( id ) removed += (removed=='' ? '' : ',' ) + id;
+	$('[name=removed]').val( removed );
+	console.log( removed );
+	
+	$(this).closest('div').remove();
+
+}); 
 	
 	
-	
-	
-	
-});
 
 //파일선택첨부 태그 복제하기
 function copyFileTag(){
 	var $item = $('td div.items-center').last();
-	$item.after( $item.clone());
+	$item.after( $item.clone() );
 	
-	//복제해 만든 태그의 대해
+	//복제해 만든 태그에 대해
 	$item = $('td div.items-center').last();
-	$item.find('.attach-file').val('');// file정보 삭제
-	$item.children('.file-name').text('');//파일명 삭제
-	$item.children('.delete-file').css('display', 'none');//삭제버튼 안보이게
-	
+	$item.find('.attach-file').val('');    // file정보 삭제
+	$item.children('.file-name').text(''); // 파일명 삭제
+	$item.children('.delete-file').css('display', 'none'); // 삭제버튼 안보이게
 }
+
+
 
 //popup 태그가 브라우저의 가운데 위치하게 처리
 function center(tag, back){
-	var width = Math.max($(window).width() ,$('body').prop('scrollwidth') ) ;
-	var height = Math.max($(window).height() ,$('body').prop('scrollHeight') ) ;
-	back.css({'width':width, 'height': height});
+	var width = Math.max( $(window).width(), $('body').prop('scrollWidth') );
+	var height = Math.max( $(window).height(), $('body').prop('scrollHeight') );
+	back.css( { 'width':width, 'height':height  } );
 	
 	var left = ($(window).width() - tag.width())/2 + $(window).scrollLeft();
 	var top = ($(window).height() - tag.height())/2 + $(window).scrollTop();
-	tag.removeClass('center').css( {'left': left, 'top': top, 'position':'absolute'});
-	
+	tag.removeClass('center').css( { 'left':left, 'top':top, 'position':'absolute' } );
 }
+
 
 
 //이미지 파일인지 확인

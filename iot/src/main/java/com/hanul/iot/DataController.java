@@ -21,6 +21,19 @@ public class DataController {
 	
 	@Autowired private CommonService common;
 	
+	
+	//유기동물 축종에 따른 품종조회 요청
+	@RequestMapping("/data/animal/kind")
+	public String animal_kind( String upkind, Model model ) {
+		StringBuffer url
+		= new StringBuffer( animalURL + "kind" );
+		url.append("?serviceKey=").append(key);
+		url.append("&_type=json");
+		url.append("&up_kind_cd=").append(upkind);
+		model.addAttribute("list", common.requestAPItoMap(url) );
+		return "data/animal/kind";
+	}
+	
 	//유기동물목록 요청
 	//@ResponseBody 
 	@RequestMapping("/data/animal/list")
@@ -32,12 +45,54 @@ public class DataController {
 		url.append("&_type=json");
 		url.append("&pageNo=").append(map.get("pageNo"));
 		url.append("&numOfRows=").append(map.get("rows"));
+		url.append("&upr_cd=").append(map.get("sido"));
+		url.append("&org_cd=").append(map.get("sigungu"));
+		url.append("&care_reg_no=").append(map.get("shelter"));
+		url.append("&upkind=").append(map.get("upkind"));
+		url.append("&kind=").append(map.get("kind"));
 		//return common.requestAPItoMap(url);
 		model.addAttribute("list", common.requestAPItoMap(url));
 		model.addAttribute("pageNo", map.get("pageNo"));
-		return "data/animal/animal_list";
+		return "data/animal/animal_" + map.get("viewType");
 	}
 	
+	//유기동물-보호소요청
+	@RequestMapping("/data/animal/shelter")
+	public String animal_shelter(String sido, String sigungu, Model model) {
+		StringBuffer url
+		= new StringBuffer( animalURL + "shelter" );
+		url.append("?serviceKey=").append(key);
+		url.append("&_type=json");
+		url.append("&upr_cd=").append(sido);
+		url.append("&org_cd=").append(sigungu);
+		model.addAttribute("list", common.requestAPItoMap(url) ); 
+		return "data/animal/shelter";
+	}
+	
+	
+	//유기동물-시군구요청
+	@RequestMapping("/data/animal/sigungu")
+	public String animal_sigungu(String sido, Model model) {
+		StringBuffer url
+		= new StringBuffer( animalURL + "sigungu" );
+		url.append("?serviceKey=").append(key);
+		url.append("&_type=json");
+		url.append("&upr_cd=").append(sido);
+		model.addAttribute("list", common.requestAPItoMap(url));
+		return "data/animal/sigungu";
+	}
+	
+	//유기동물-시도요청
+	@RequestMapping("/data/animal/sido")
+	public String animal_sido(Model model) {
+		StringBuffer url
+		= new StringBuffer( animalURL + "sido" );
+		url.append("?serviceKey=").append(key);
+		url.append("&_type=json");
+		url.append("&numOfRows=50");
+		model.addAttribute("list", common.requestAPItoMap(url) );
+		return "data/animal/sido";
+	}
 	
 	//약국목록 요청
 	@ResponseBody @RequestMapping("/data/pharmacy")
