@@ -3,7 +3,19 @@ package andmember;
 public class MemberVO {
 
 	private int id;
-	private String email, pw, name, nickname, addr, post, phone, social, manager, profile_image, b_num, salt;
+	private String email, pw, name, nickname, addr, addr_more, post, phone, social, manager, profile_image, b_num, salt;
+
+	
+	
+	
+	
+	public String getAddr_more() {
+		return addr_more;
+	}
+
+	public void setAddr_more(String addr_more) {
+		this.addr_more = addr_more;
+	}
 
 	public String getPost() {
 		return post;

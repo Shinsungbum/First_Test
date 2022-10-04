@@ -1,10 +1,20 @@
 package storeinfo;
 
 public class StoreMenuVO {
-	private int menu_id, store_code, menu_code, price;
+	private int menu_id, store_code, menu_code, price, id, menu_cnt;
     private String menu_image, menu_name;
 
-    public int getMenu_id() {
+    
+    
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getMenu_id() {
         return menu_id;
     }
 
