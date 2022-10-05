@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import andreview.ReviewDAO;
+import andreview.ReviewVO;
 import common.Common;
-import review.ReviewDAO;
-import review.ReviewVO;
 
 @RestController
 public class AndReviewListController {
@@ -20,7 +20,8 @@ public class AndReviewListController {
 	@Autowired Common common;
 	Gson gson = new Gson();
 	
-	//찜 목록
+	
+	//내가 쓴 리뷰 리스트
 	@RequestMapping(value = "/andReviewList", produces = "text/html; charset=utf-8")
 	public String review_list(String email) {
 		System.out.println(email);

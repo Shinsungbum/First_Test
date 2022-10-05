@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="andmember">
 
+
+<!-- 로그인 정보 다시 가져오기 jk-->
+<select id="resume" resultType="andmember.MemberVO">
+select * from member where email = #{email}
+</select>
+
 <!-- 회원탈퇴 jk 2022/09/29 -->
 <delete id="delete">
 delete from member where email = #{email} 
@@ -9,13 +15,13 @@ delete from member where email = #{email}
 
 
 <!--내정보 수정 modify jk-2022/09/28  -->
-<update id="modify">
+<update id="update">
 update member
 set pw = #{pw, jdbcType=VARCHAR}, phone = #{phone, jdbcType=VARCHAR}, addr = #{addr, jdbcType=VARCHAR}
 	  , addr_more = #{addr_more,  jdbcType=VARCHAR}
 	  , nickname=#{nickname, jdbcType=VARCHAR}
 	  , post = #{post, jdbcType=VARCHAR}
-	  , profile_image = #{profile_image}
+	  , profile_image = #{profile_image, jdbcType=VARCHAR}
 where email = #{email} 
 </update>
 
@@ -30,7 +36,7 @@ where email = #{email}
 <select id="login" resultType="andmember.MemberVO">
 SELECT * FROM member 
 WHERE email=#{email} and pw = #{pw, jdbcType= VARCHAR}
- AND NVL(pw,0) = NVL(#{pw,jdbcType=VARCHAR},0)
+
 </select>
 
 

@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
 
+
+
 <!-- 장바구니 전체 삭제 -->
 <delete id="basket_delete_all">
-DELETE FROM basket
+ DELETE FROM basket 
+ where id = #{id}
 </delete>
-
 
 <!-- 장바구니 삭제 -->
 <delete id="basket_delete">
@@ -16,14 +18,14 @@ DELETE FROM basket
 
 
 <!-- 장바구니 중복체크 -->
-<select id="basket" resultType="storeinfo.BasketVO">
+<select id="basket" resultType="andstoreinfo.BasketVO">
 select *
 from basket
 </select>
 
 
 <!-- 장바구니 출력 -->
-<select id="basket_list" resultType="storeinfo.BasketVO">
+<select id="basket_list" resultType="andstoreinfo.BasketVO">
 select b.*, m.menu_name, m.menu_image, b.menu_cnt * b.menu_price total_price
 from basket b LEFT outer join menu_info m
 ON b.menu_code = m.menu_id
@@ -41,30 +43,56 @@ values( #{vo.store_code}, #{id}, 1 ,#{vo.menu_id},#{vo.price} )
 
 
 
-
-<select id="list" resultType="storeinfo.StoreInfoVO">
+<select id="list" resultType="andstoreinfo.StoreInfoVO">
 select *
 from store_info
 </select>
 
 
-<select id="menu_list" resultType="storeinfo.StoreMenuVO">
+<select id="menu_list" resultType="andstoreinfo.StoreMenuVO">
 select *
 from menu_info
 where store_code = #{store_code}
 </select>
 
-<!--가게리뷰 조회 jk  -->
-<select id="review" resultType="storeinfo.StoreInfoVO">
-select TO_CHAR(SYSDATE, 'YYYY-MM-DD HH:MI'), star_rating, r.*, m.*
-from star_rating sr left outer join review r
-on sr.store_code = r.store_code 
-left outer join member m 
-on r.id = m.id
-where r.store_code = #{store_code}
 
+<!-- 가게 평점 min 조회 jk-->
+<select id="store_min"  resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}
+order by rv.star_rating asc
 </select>
 
+<!-- 가게 평점 max 조회 jk-->
+<select id="store_max"  resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}
+order by rv.star_rating desc
+</select>
+
+<!--가게리뷰 최신순 조회 jk  -->
+<select id="store_review" resultType="andstoreinfo.StoreInfoVO">
+select to_char(writedate, 'yyyy-mm-dd') writedate, rv.star_rating, rv.*, m.*, count(store_code) over(partition by store_code) cnt
+from review rv left outer join member m
+on rv.id = m.id
+where store_code = #{store_code}  
+order by 1 desc
+</select>
+
+<!-- 가게리뷰 평점 조회 jk -->
+<select id="store_score" resultType="andstoreinfo.StoreInfoVO">
+select round(avg(star_rating),1) star_rating, round(avg(taste), 1) taste
+		 , round(avg(mood),1) mood, round(avg(kind),1) kind
+		 , round(avg(clean),1) clean,
+          store_code ,  count(store_code) cnt
+from review 
+where store_code = #{store_code}
+GROUP BY store_code
+</select>
 </mapper>
 
 

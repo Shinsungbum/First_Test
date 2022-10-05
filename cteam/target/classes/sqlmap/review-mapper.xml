@@ -2,25 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="andReview">
 
-<!--리뷰 삭제  -->
+
+<!-- 리뷰내용 수정update jk -->
+<update id = "update">
+update review set  clean = #{clean}, taste = #{taste}, mood = #{mood}
+							  , kind = #{kind} , star_rating =  #{star_rating}
+							  , review_content = #{review_content, jdbcType=VARCHAR}
+where id = #{id}
+and star_code = #{star_code}			  
+</update>
+
+<!-- .리뷰 상세 detail jk-->
+<select id="detail"  resultType="andreview.ReviewVO">
+select * from review re left outer join store_info si
+on re.store_code = si.store_code
+where re.star_code = #{star_code}
+</select>
+
+<!--리뷰 삭제 jk 하는중 -->
 <delete id="delete">
 delete from review where email = #{email}
 </delete>
 
-<!--  리뷰 리스트 조회-->
-<select id="list" resultType="review.ReviewVO">
+<!--  리뷰 리스트 조회  jk-->
+<select id="list" resultType="andreview.ReviewVO">
 select k.* 
-           from (select m.*,  r.content, r.star_code, f.store_name, f.store_image  
+           from (select m.*, r.star_rating,  r.review_content, r.review_image, r.star_code, f.store_name, f.store_image  
                       from member m left outer join review r
                       on r.id = m.id 
                       left outer join store_info f
                       on r.store_code = f.store_code )  k
-where email = #{email}  
+where email = #{email}
+
 </select>
 
-<!-- 리뷰 insert 하는중-->
+<!-- 리뷰 insert 하는중 jk-->
 <insert id="insert">
-insert into star_rating(star_code, id, store_code,)
+insert into star_rating(star_code, id, store_code)
 
 </insert>
 </mapper>

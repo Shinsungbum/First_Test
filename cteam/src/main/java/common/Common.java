@@ -18,6 +18,8 @@ import andmember.MemberVO;
 public class Common {
 
 	
+	
+	
 	//첨부파일 업로드 
 	public String fileUpload(String category, MultipartFile file, HttpServletRequest request ) {
 

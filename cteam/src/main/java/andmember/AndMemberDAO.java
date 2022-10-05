@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 
-import common.Common;
-
 @Repository
 public class AndMemberDAO {
 
 	@Autowired @Qualifier("cteam") private SqlSession sql;
-	@Autowired private Common common;
-
+	
 	
 	//회원탈퇴 - jk 2022/09/29
 	public int delete(String email) {
@@ -22,8 +19,8 @@ public class AndMemberDAO {
 	
 
 	//내정보 수정 - jk 2022/09/28
-	public int modify(MemberVO vo) {
-		return sql.update("andmember.modify", vo );
+	public int update(MemberVO vo) {
+		return sql.update("andmember.update", vo );
 	}
 	
 	//내정보 수정 파일 경로 확인 - jk 2022/09/28
@@ -61,6 +58,14 @@ public class AndMemberDAO {
 		// 결과값이 1이상이면 true , 아니면 false
 		return (Integer)sql.selectOne("andmember.social_id_check", vo);
 	}
+
+
+	//로그인정보 변경- jk
+	public MemberVO resume(MemberVO vo) {
+		return sql.selectOne("andmember.resume", vo);
+	}
+
+
 
 
 
