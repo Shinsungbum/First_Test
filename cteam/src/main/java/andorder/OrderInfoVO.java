@@ -1,10 +1,23 @@
 package andorder;
 
 public class OrderInfoVO {
-	private int order_num, category_code, store_code, id, menu_cnt, order_state;
-	private String order_date, phone, priceorder_time, order_peple, order_time;
+	private int order_num, category_code, store_code, id, menu_cnt, order_state, price;
+	private String order_date, phone, priceorder_time, order_peple, order_time, total_info;
 	
 	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getTotal_info() {
+		return total_info;
+	}
+	public void setTotal_info(String total_info) {
+		this.total_info = total_info;
+	}
 	public String getOrder_time() {
 		return order_time;
 	}

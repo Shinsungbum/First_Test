@@ -56,7 +56,7 @@ public class AndStoreInfoController {
 		return gson.toJson(list);
 	}
 
-	// 장바구니 리스트 출력 - sb 10 /04
+	// 장바구니 전체삭제 - sb 10 /04
 	@RequestMapping(value = "/andBasketDelete", produces = "text/html; charset=utf-8")
 	public String basket_delet(String menu) {
 		BasketVO vo = new Gson().fromJson(menu, BasketVO.class);

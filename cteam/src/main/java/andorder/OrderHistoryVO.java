@@ -2,11 +2,55 @@ package andorder;
 
 public class OrderHistoryVO {
 
-	private String menu_image, store_name, menu_name;
-	private int  price , total_price;
+	private String menu_image, store_name, menu_name, total_info;
+	private int  price , total_price, id, store_code, order_state, category_code, order_num, menu_cnt;
 	
 	
+
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getStore_code() {
+		return store_code;
+	}
+	public void setStore_code(int store_code) {
+		this.store_code = store_code;
+	}
+	public int getOrder_state() {
+		return order_state;
+	}
+	public void setOrder_state(int order_state) {
+		this.order_state = order_state;
+	}
+	public int getCategory_code() {
+		return category_code;
+	}
+	public void setCategory_code(int category_code) {
+		this.category_code = category_code;
+	}
+	public int getOrder_num() {
+		return order_num;
+	}
+	public void setOrder_num(int order_num) {
+		this.order_num = order_num;
+	}
+	public int getMenu_cnt() {
+		return menu_cnt;
+	}
+	public void setMenu_cnt(int menu_cnt) {
+		this.menu_cnt = menu_cnt;
+	}
+	public String getTotal_info() {
+		return total_info;
+	}
+	public void setTotal_info(String total_info) {
+		this.total_info = total_info;
+	}
 	public String getMenu_image() {
 		return menu_image;
 	}

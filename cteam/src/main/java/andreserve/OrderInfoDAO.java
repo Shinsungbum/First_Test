@@ -24,6 +24,10 @@ public class OrderInfoDAO {
 		return sql.selectList("orderinfo.order_info_select", id);
 	}
 
+	public int delete_order_info(int id) {
+		return sql.delete("orderinfo.order_info_delete", id);
+	}
+
 	
 	
 }
