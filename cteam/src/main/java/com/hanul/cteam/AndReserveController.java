@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import andorder.OrderHistoryVO;
 import andorder.OrderInfoVO;
 import andreserve.OrderInfoDAO;
 import andreserve.Order_infoVO;
-
 
 @RestController
 public class AndReserveController {
@@ -20,6 +20,17 @@ public class AndReserveController {
 	@Autowired OrderInfoDAO dao;
 	Gson gson = new Gson();
 
+	
+	//주문상태 테이블에 예약 추가
+	@RequestMapping(value = "/andInsert_order_history", produces = "text/html; charset=utf-8")
+	public String andInsert_order_history(String vo) {
+		OrderHistoryVO order_history = new Gson().fromJson(vo, OrderHistoryVO.class);
+		dao.insert_order_history(order_history);
+		return gson.toJson(vo);
+	}
+	
+	
+	
 	//주문상태 테이블에 예약 추가
 	@RequestMapping(value = "/andDelete_order_info", produces = "text/html; charset=utf-8")
 	public int andDelete_order_info(int id) {
@@ -42,7 +53,6 @@ public class AndReserveController {
 		List<OrderInfoVO> list = dao.select_order_info(id);
 		return gson.toJson(list);
 	}
-	
 	
 	
 	

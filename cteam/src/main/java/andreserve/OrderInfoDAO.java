@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import andorder.OrderHistoryVO;
 import andorder.OrderInfoVO;
 import common.Common;
 
@@ -26,6 +27,10 @@ public class OrderInfoDAO {
 
 	public int delete_order_info(int id) {
 		return sql.delete("orderinfo.order_info_delete", id);
+	}
+
+	public int insert_order_history(OrderHistoryVO vo) {
+		return sql.insert("orderinfo.order_history_insert", vo);
 	}
 
 	

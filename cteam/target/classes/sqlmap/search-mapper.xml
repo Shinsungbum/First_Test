@@ -26,4 +26,14 @@
 	ON m.store_code = s.store_code
 	GROUP BY menu_name, store_name
 </select>
+
+
+<!-- 카테고리별로 출력 -->
+<select id="search_category" resultType="andstoreinfo.StoreInfoVO">
+	SELECT i.store_code, i.store_category, i.store_logo, i.store_name, i.store_addr, round(avg(r.star_rating),1) star_rating, count(r.store_code) review_cnt
+	FROM store_info i  LEFT OUTER JOIN review r
+	ON i.store_code = r.store_code
+	WHERE store_category = #{store_category}
+	GROUP BY i.store_code, i.store_category, i.store_logo, i.store_name, i.store_addr
+</select>
 </mapper>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderinfo">
+
+<insert id="order_info_insert">
+insert into order_info(CATEGORY_CODE, STORE_CODE, ID, ORDER_DATE, PHONE, MENU_CNT, PRICE, ORDER_STATE, ORDER_TIME, ORDER_PEPLE)
+VALUES(#{category_code}, #{store_code}, #{id}, #{order_date}, #{phone}, #{menu_cnt}, #{price}, #{order_state}, #{order_time}, #{order_peple})
+</insert>
+
+
 <!-- 주문정보테이블 상제 -->
 <delete id="order_info_delete">
 DELETE FROM order_info
@@ -20,10 +27,11 @@ where s.id = #{id}
 
 
 <!-- 주문정보테이블 저장 -->
-<insert id="order_info_insert">
-insert into order_info(CATEGORY_CODE, STORE_CODE, ID, ORDER_DATE, PHONE, MENU_CNT, PRICE, ORDER_STATE, ORDER_TIME, ORDER_PEPLE, total_info)
-VALUES(#{category_code}, #{store_code}, #{id}, #{order_date}, #{phone}, #{menu_cnt}, #{price}, #{order_state}, #{order_time}, #{order_peple}, #{total_info})
-</insert>
+<insert id="order_history_insert"> 
+ insert into order_history( menu_cnt, price, order_date, order_num, category_code, store_code, id, total_info)
+ values(#{menu_cnt}, #{price}, #{order_date}, #{order_num}, #{category_code}, #{store_code}, #{id}, #{total_info} ) 
+ </insert>
+
 
 
 

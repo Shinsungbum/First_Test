@@ -86,8 +86,6 @@ public class AndMemberController {
         MemberVO profile = dao.profile_image_detail(modify.getEmail());
         String imgpath =profile.getProfile_image();
         
-        
-      
 		MultipartRequest mReq = (MultipartRequest) request;
 		System.out.println(mReq);
 		MultipartFile file = mReq.getFile("file");
@@ -175,7 +173,7 @@ public class AndMemberController {
 	public String join(String vo) {
 		MemberVO joinInfo = new Gson().fromJson(vo, MemberVO.class);
 	
-		// 소셜 로그인 회원가입
+		//소셜 로그인 회원가입
 		if (joinInfo.getSocial().equals("Y")) {
 			dao.social_join(joinInfo);
 		} else {

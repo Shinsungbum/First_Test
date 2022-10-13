@@ -23,9 +23,9 @@ public class AndReviewListController {
 	
 	//내가 쓴 리뷰 리스트
 	@RequestMapping(value = "/andReviewList", produces = "text/html; charset=utf-8")
-	public String review_list(String email) {
-		System.out.println(email);
-		List<ReviewVO> list = dao.review_list(email);
+	public String review_list(int id) {
+		System.out.println(id);
+		List<ReviewVO> list = dao.review_list(id);
 		return gson.toJson(list);
 	}
 	

@@ -14,7 +14,7 @@ public class OrderHistoryDAO {
 
 	//주문내역 리스트 jk - 2022/10/04
 	public List<OrderHistoryVO> list(int id) {
-		return sql.selectList("orderhistory.list", id);
+		return sql.selectList("andorderhistory.list", id);
 	}
 	
 	

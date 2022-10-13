@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import andmember.MemberVO;
+import andreview.ReviewVO;
 
 @RestController
 public class Common {
@@ -49,6 +50,7 @@ public class Common {
 	}
 	
 	
+	
 	//파일 삭제하기 위한 처리
 	public void removed_image (MemberVO vo, HttpServletRequest request) {
 	
@@ -59,6 +61,18 @@ public class Common {
 			File file = new File(filepath);
 			if (file.exists() ) {file.delete();}else {System.out.println("경로없음");}; 
 	}
+	
+	
+	//리뷰에 잇는 파일 삭제하기 위한 처리 - jk
+	public void removed_review_img (ReviewVO vo, HttpServletRequest request) {
+			String filepath = vo.getReview_image();
+			filepath = filepath.replace(appName(request), "d:/" + request.getContextPath() );
+		    System.out.println(filepath);
+			File file = new File(filepath);
+			if (file.exists() ) {file.delete();}else {System.out.println("경로없음");}; 
+	}
+	
+	
 	
 	
 	// 비밀번호를 암호화 하는데 사용할 salt생성 jk 2022/09/21

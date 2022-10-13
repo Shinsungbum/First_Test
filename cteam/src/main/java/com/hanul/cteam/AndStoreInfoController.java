@@ -21,10 +21,8 @@ import common.Common;
 @RestController
 public class AndStoreInfoController {
 
-	@Autowired
-	StoreInfoDAO dao;
-	@Autowired
-	Common common;
+	@Autowired StoreInfoDAO dao;
+	@Autowired Common common;
 	Gson gson = new Gson();
 
 	// 가게 메뉴리스트 조회 - sb 10/04
@@ -70,7 +68,7 @@ public class AndStoreInfoController {
 		return dao.baketDeleteAll(id);
 	}
 
-//가게 평점 낮은순으로 조회 - jk
+	//가게 평점 낮은순으로 조회 - jk
 	@RequestMapping(value = "/andStoreMin", produces = "text/html;charset=utf-8")
 	public String storeMin(int store_code) {
 		List<StoreInfoVO> list = dao.store_Min(store_code);
@@ -107,6 +105,7 @@ public class AndStoreInfoController {
 	@RequestMapping(value = "/andStoreList", produces = "text/html;charset=utf-8")
 	public String storeList() {
 		List<StoreInfoVO> list = dao.store_list();
+		// System.out.println(list.get(0).getStore_filepath());
 		Gson gson = new Gson();
 		return gson.toJson(list);
 
