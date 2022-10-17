@@ -96,33 +96,33 @@
 
 <!-- 지도 API -->
 
-<script src="https://designskin13.clickn.co.kr/js/skin_render_map.js?v=20221005"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_map.js?<%=new java.util.Date()%>"></script>
 
 <!-- 주소 변환 -->
-<script src="https://designskin13.clickn.co.kr/js/postcode.js?v=20221005"></script>
+<script src="https://designskin13.clickn.co.kr/js/postcode.js?<%=new java.util.Date()%>"></script>
 <script src="https://designskin13.clickn.co.kr/vendors/Dropzone/js/dropzone.min.js"></script>
 <script src="https://designskin13.clickn.co.kr/vendors/Masonry/js/masonry.pkgd.min.js"></script>
 <script src="https://designskin13.clickn.co.kr/js/design_loader.js?v=20221005"></script>
 <script src="https://designskin13.clickn.co.kr/js/skin_render_hf.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_module.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_menus.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_slide.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_board.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_forms.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_popup.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_settings.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_render_gallery.js?v=20221005"></script>
-<script src="https://designskin13.clickn.co.kr/js/skin_basic_info.js?v=20221005"></script><!-- 사이트 정보 연동, sns 링크 연동 -->
-<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductA.js?v=20221005"></script><!-- 상품 디스플레이 -->
-<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductB.js?v=20221005"></script><!-- 상품 문의 -->
-<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductC.js?v=20221005"></script><!-- 상품 후기 -->
-<script src="https://designskin13.clickn.co.kr/js/skin_ui.js?v=20221005"></script>
-<script src="https://storage.clickn.co.kr//js/modules/modules_ui.js?v=20221005"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_module.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_menus.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_slide.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_board.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_forms.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_popup.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_settings.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_render_gallery.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/skin_basic_info.js?<%=new java.util.Date()%>"></script><!-- 사이트 정보 연동, sns 링크 연동 -->
+<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductA.js?<%=new java.util.Date()%>"></script><!-- 상품 디스플레이 -->
+<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductB.js?<%=new java.util.Date()%>"></script><!-- 상품 문의 -->
+<script src="https://designskin13.clickn.co.kr/js/skin_render_builderProductC.js?<%=new java.util.Date()%>"></script><!-- 상품 후기 -->
+<script src="https://designskin13.clickn.co.kr/js/skin_ui.js?<%=new java.util.Date()%>"></script>
+<script src="https://storage.clickn.co.kr//js/modules/modules_ui.js?<%=new java.util.Date()%>"></script>
 
 
-<script src="/modules/js?m=members&js=login&v=20221005"></script>
+<script src="modules/js?m=members&js=login&v=20221005"></script>
     
-	<script src="https://designskin13.clickn.co.kr/js/skin_main.js?v=20221005"></script><!-- 메인에서만 실행되어야하는 JS -->
+	<script src="https://designskin13.clickn.co.kr/js/skin_main.js?<%=new java.util.Date()%>"></script><!-- 메인에서만 실행되어야하는 JS -->
     
     
     
@@ -133,7 +133,7 @@
 							<div class='module_wrap'>
 								<div class='module_container'>
 									<div class="footer_section logo_area">
-										<a href="/"><b><img id="footerLogo" src="https://storage.clickn.co.kr//images/module_contents/logo_clickn.png" alt="" onerror="this.src='https://storage.clickn.co.kr//images/module_contents/logo_blank.png';" /></b></a>
+										<a href="/"><b><img id="footerLogo" src="file/maindgs.png" alt="" onerror="this.src='images/module_contents/maindgs.png';" /></b></a>
 									</div>
 									<div class="footer_section fnb_area">
 										<!-- FNB 햄버거
@@ -205,12 +205,7 @@
 							</div>
 						</div>
 												<!-- +++++++++ free 배너 +++++++++ -->
-						<div class="level1_bnr_wrap">
-							<a href="https://www.clickn.co.kr" target="_blank" class="level1_bnr">
-								<img src="/images/logo_small.png" alt="CLICKN" class="logo">
-								<span class="txt">푸드파킹테스트</span>
-							</a>
-						</div>
+						
 						<!-- +++++++++ //free 배너 +++++++++ -->
 											</div>
 					<!-- ===================== // Skin Main ===================== -->

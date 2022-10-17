@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"	prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <link rel="shortcut icon" href="file/519550687">
@@ -793,21 +793,17 @@
 												</li>
 												<!-- 로그인 정보가 없다면 로그인, 회원가입이 보이는거고 -->
 												<c:if test="${empty loginInfo}">
-													<li class="login" style="">
-														<a href="login.mb" style="font-family: Noto Sans KR">LOGIN</a>
-													</li>
-													<li class="join" style="">
-														<a href="join.mb" style="font-family: Noto Sans KR">JOIN</a>
-													</li>
+													<li class="login" style=""><a href="login.mb"
+														style="font-family: Noto Sans KR">LOGIN</a></li>
+													<li class="join" style=""><a href="join.mb"
+														style="font-family: Noto Sans KR">JOIN</a></li>
 												</c:if>
 												<!-- 로그인한 경우에는 로그아웃이 보이게 -->
 												<c:if test="${not empty loginInfo}">
-													<li class="myInfo" style="">
-														<a href="myInfo" style="font-family: Noto Sans KR">${loginInfo.name}</a>
-													</li>
-													<li class="logout">
-														<a href="logout" style="font-family: Noto Sans KR">LOGOUT</a>
-													</li>
+													<li class="myInfo" style=""><a href="myInfo"
+														style="font-family: Noto Sans KR">${loginInfo.name}</a></li>
+													<li class="logout"><a href="logout"
+														style="font-family: Noto Sans KR">LOGOUT</a></li>
 												</c:if>
 											</ul>
 											<!-- 쇼핑몰 유틸메뉴( 다른 링크로도 활용 가능 ) -->
@@ -838,25 +834,57 @@
 								</div>
 
 								<!-- GNB -->
-								<ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
-									<li><a href='/pages/about' style='font-size: 16px'>소개</a>
-										<button type="button" class='btn_depth2_view'></button>
-										<div class='navi_depth2_wrap'>
-											<ul class='navi_depth2'>
-												<li><a href='/pages/about'>인사말</a></li>
-												<li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
-											</ul>
-										</div></li>
-									<li><a href='/pages/service' style="font-size: 16px;">입정신청양식</a>
-									</li>
-									<li><a href='/pages/gallery' style="font-size: 16px;">푸드파킹
-											소개</a></li>
-									<li><a href='/pages/news' style="font-size: 16px;">푸드
-											소식</a></li>
-									<li><a href='/pages/contact' style="font-size: 16px;">이건뭐할까</a>
-									</li>
+								<c:if test="${not empty loginInfo}">
 
-								</ul>
+									<ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
+										<li><a href='/pages/about' style='font-size: 16px'>소개</a>
+											<button type="button" class='btn_depth2_view'></button>
+											<div class='navi_depth2_wrap'>
+												<ul class='navi_depth2'>
+													<li><a href='/pages/about'>인사말</a></li>
+													<li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
+												</ul>
+											</div></li>
+										<li><a href='/pages/service' style="font-size: 16px;">입정신청양식</a>
+										</li>
+										<li><a href='pages/so' style="font-size: 16px;">가게 정보</a></li>
+										<li><a href='/pages/news' style="font-size: 16px;">푸드
+												소식</a></li>
+										<c:if test="${loginInfo.manager.equals('Y') }">
+											<li><a href='myStore' style="font-size: 16px;">가게 정보</a>
+											</li>
+										</c:if>
+											<c:if test="${loginInfo.manager.equals('M') }">
+											<li><a href='admin_order' style="font-size: 16px;">관리자 업무</a>
+											</li>
+										</c:if>
+
+									</ul>
+								</c:if>
+
+								<c:if test="${empty loginInfo}">
+
+									<ul id="GnbMenu" class="gnb" style="font-family: Noto Sans KR">
+										<li><a href='/pages/about' style='font-size: 16px'>소개</a>
+											<button type="button" class='btn_depth2_view'></button>
+											<div class='navi_depth2_wrap'>
+												<ul class='navi_depth2'>
+													<li><a href='/pages/about'>인사말</a></li>
+													<li><a href='/pages/history'>푸드파킹 둘러보기</a></li>
+												</ul>
+											</div></li>
+										<li><a href='/pages/service' style="font-size: 16px;">입정신청양식</a>
+										</li>
+										<li><a href='pages/so' style="font-size: 16px;">푸드파킹
+												소개</a></li>
+										<li><a href='/pages/news' style="font-size: 16px;">푸드
+												소식</a></li>
+										<li><a href='myStore'
+											style="font-size: 16px; display: none;">가게 정보</a></li>
+
+									</ul>
+
+								</c:if>
 							</div>
 
 							<!-- Aside open button( 햄거버 ) -->

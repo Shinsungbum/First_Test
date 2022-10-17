@@ -5,11 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix='c'%>
 
 <c:choose>
-	<c:when test="${category eq 'cu'}"><c:set var='title' value='- 소개'/></c:when>
-	<c:when test="${category eq 'hr'}"><c:set var='title' value='- 입점신청양식'/></c:when>
+	<c:when test="${category eq 'in'}"><c:set var='title' value='- 소개'/></c:when>
+	<c:when test="${category eq 'en'}"><c:set var='title' value='- 입점신청양식'/></c:when>
 	<c:when test="${category eq 'no'}"><c:set var='title' value='- 푸드파킹 소개'/></c:when>
 	<c:when test="${category eq 'bo'}"><c:set var='title' value='- 푸드 소식'/></c:when>
 	<c:when test="${category eq 'da'}"><c:set var='title' value='- 이건 뭐할까'/></c:when>
+	<c:when test="${category eq 'st'}"><c:set var='title' value='- 나의 가게'/></c:when>
 
 </c:choose>
 
@@ -18,8 +19,8 @@
 <head>
 <meta charset="UTF-8">
 <title>푸드 파킹 ${title}</title>
-
-<link rel="shortcut icon" href="file/519550687">
+<!-- 우리꺼 아이콘 -->
+<link rel="icon" type = 'image/x-icon' href="images/icon.png">
 
 
 
@@ -27,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/css/lib.css?<%=new java.util.Date()%>" />
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/vendors/Slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/vendors/Swiper/swiper.min.css" /><!-- Swiper js-->
+<link rel="stylesheet" type="text/css" href="vendors/Swiper/swiper.min.js" /><!-- Swiper js-->
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/vendors/Fontawesome/css/froala.css"><!-- Froala 에 Font Awesome 서비스하기 위함 -->
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/vendors/Fontawesome/css/all.min.css"><!-- Font Awesome -->
 <link rel="stylesheet" type="text/css" href="https://designskin13.clickn.co.kr/vendors/Froala/css/froala_editor.pkgd.css" /><!-- Froala -->
@@ -85,9 +87,9 @@ var MODULES_STORAGE_BASE_URI = "https:\/\/storage.clickn.co.kr\/" ;
 <script src="https://designskin13.clickn.co.kr/lang/common.js?m=front&amp;g=common"></script>
 <script src="https://designskin13.clickn.co.kr/vendors/Jquery/jquery.min.js"></script>
 <script src="https://designskin13.clickn.co.kr/vendors/Twbs-pagination/jquery.twbsPagination.js"></script>
-<script src="https://designskin13.clickn.co.kr/js/common_ssb.js?<%=new java.util.Date()%>"></script>
+<script src="https://designskin13.clickn.co.kr/js/common.js?<%=new java.util.Date()%>"></script>
 <script src="https://designskin13.clickn.co.kr/js/skin_ui_functions.js?<%=new java.util.Date()%>"></script><!-- 우선 순위 높아야하는 UI Functions -->
-<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+
 
 <script>
 var USER = ""

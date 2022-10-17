@@ -164,7 +164,7 @@ ul{list-style:none; }
             <a class="delete">회원탈퇴</a>
           </div>
         
-          
+      	    
       
           
         </div> <!-- form_txtInput E -->
@@ -174,15 +174,21 @@ ul{list-style:none; }
 
 <script src='js/member.js?<%=new java.util.Date()%>'></script>
 <script type="text/javascript">
+
 //회원탈퇴 처리시
 $('.delete').click(function(){
-	
 	if (confirm('회원을 탈퇴 하시겠습니까?')) {
-			//history.go(-1);
+		//history.go(-1);
+		var a = prompt("이메일을 입력하세요", "이메일");
+		var email = '${loginInfo.email }'
+		 if(email == a){
 			$('form').attr('action', 'delete.mb');
-			$('form').submit();
+			$('form').submit(); 
+		}else{
+			alert('이메일이 틀렸습니다')
 		}
-	});
+	}
+});
 
 	function modify() {
 		if ($('[name=name]').val() == '') {
